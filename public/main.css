@@ -1,3 +1,106 @@
-header{
-    color: blue;
+/*STYLE SHEET*/
+
+/*Fonts:
+  Headers: Iceland
+  Body: Roboto lt300
+
+Colors:
+  Orange:
+    Main: ffc046
+    light: ff8f00
+    dark: c56000
+  Blue:
+    Main: 03a9f4
+    light: 67daff
+    dark: 007ac1
+    font-family: 'Iceland', cursive;
+    font-family: 'Roboto', sans-serif;*/
+
+/*STYLE SHEET END*/
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+h1 {
+    font-family: 'Iceland';
+    margin: 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+}
+
+/* ============= HEADER*/
+header {
+  background-color: white;
+}
+
+header h1 {
+  font-size: 50px;
+  font-weight: lighter;
+  margin-top: 20px;
+}
+
+nav {
+  display: flex;
+  height: 20px;
+  background-color: #ffc046;
+  text-align: center;
+}
+
+nav p {
+    flex-direction: row;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 18px;
+    margin: 0;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+nav p:hover {
+  background-color: #67daff;
+}
+
+.logoImg {
+  flex: .25 1 auto;
+}
+
+header img {
+  width: 50%;
+  padding-top: 10px;
+}
+
+main h1 {
+  text-align: center;
+  font-size: 50px;
+  flex: 1 1 auto;
+}
+
+/*DELETE AFTER POPULATE DATA*/
+.open {
+  margin-top: 100px;
+}
+
+.headrow {
+  width: 100%;
+  flex-direction: row;
+}
+
+/*=========================== MAIN*/
+main {
+  background-color: #ff8f00;
+  height: 100%;
 }
