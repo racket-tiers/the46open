@@ -6,6 +6,7 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('user_table').insert([
         {
+          id: 1,
           first_name: 'Jules',
           last_name: 'Perryman',
           cohort: 'g46',
@@ -17,6 +18,7 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.google.com'
         },
         {
+          id: 2,
           first_name: 'Michelle',
           last_name: 'Bergquist',
           cohort: 'g46',
@@ -28,6 +30,7 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.yahoo.com'
         },
         {
+          id: 3,
           first_name: 'Jackson',
           last_name: 'Donvan',
           cohort: 'g46',
@@ -39,6 +42,7 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.cnn.com'
         },
         {
+          id: 4,
           first_name: 'James',
           last_name: 'Schultz',
           cohort: 'g46',
