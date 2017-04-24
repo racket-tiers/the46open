@@ -1,0 +1,29 @@
+{
+  "name": "the46open",
+  "version": "1.0.0",
+  "description": "App that tracks ping pong match results and pairs up players for matches.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/racket-tiers/the46open.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/racket-tiers/the46open/issues"
+  },
+  "homepage": "https://github.com/racket-tiers/the46open#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "hbs": "^4.0.1",
+    "knex": "^0.12.9",
+    "pg": "^6.1.5"
+  }
+}
