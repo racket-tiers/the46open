@@ -22,16 +22,23 @@
 <main>
   <h1>Recent Matches</h1>
   <h1 class="open">Top Matches</h1>
-</main>
+
+
+        {{#each data}}
+            <div>
+                <span class="first_name">{{this.first_name}}</span>
+                <span class="first_name">{{this.last_name}}</span>
+                <span class="first_name">{{this.cohort}}</span>
+                <span class="first_name">{{this.rating}}</span>
+
+            </div>
+
+        {{/each}}
+    </main>
 
 
 
-<!--
-{{#each instructors}}
-<h2> {{name}} </h2>
-{{/each}} -->
-
-    </body>
+</body>
 
 
 </html>
