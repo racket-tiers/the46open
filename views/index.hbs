@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
 
-        <link type="text/css" rel="stylesheet" href="main.css">
-        <title>The46Open</title>
-    </head>
-    <body>
-<header>
-    Welcome to The 46 Open
-</header>
+<head>
+    <meta charset="utf-8">
 
-<p>this is a test paragraph</p>
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <title>The46Open</title>
+</head>
+
+<body>
+    <header>
+        Welcome to The 46 Open
+    </header>
+
+    <p>this is a test paragraph</p>
+
+
+    <main>
+
+        {{#each data}}
+            <div>
+                <span class="first_name">{{this.first_name}}</span>
+                <span class="first_name">{{this.last_name}}</span>
+                <span class="first_name">{{this.cohort}}</span>
+                <span class="first_name">{{this.rating}}</span>
+
+            </div>
+
+        {{/each}}
+    </main>
 
 
 
-<!-- <h1> Welcome to {{title}} </h1>
-<p> My {{title}} is the best </p>
-<p>My {{title}} is really cool</p>
-
-{{#each instructors}}
-<h2> {{name}} </h2>
-{{/each}} -->
-
-    </body>
+</body>
 
 
 </html>
