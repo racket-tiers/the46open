@@ -6,7 +6,7 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('user_table').insert([
         {
-          id: 1,
+          id: 100,
           first_name: 'Jules',
           last_name: 'Perryman',
           cohort: 'g46',
@@ -21,7 +21,7 @@ exports.seed = function (knex, Promise) {
           password: 'password'
         },
         {
-          id: 2,
+          id: 200,
           first_name: 'Michelle',
           last_name: 'Bergquist',
           cohort: 'g46',
@@ -36,7 +36,7 @@ exports.seed = function (knex, Promise) {
           password: 'elephants'
         },
         {
-          id: 3,
+          id: 300,
           first_name: 'Jackson',
           last_name: 'Donvan',
           cohort: 'g46',
@@ -51,7 +51,7 @@ exports.seed = function (knex, Promise) {
           password: 'baseballs'
         },
         {
-          id: 4,
+          id: 400,
           first_name: 'James',
           last_name: 'Schultz',
           cohort: 'g46',
