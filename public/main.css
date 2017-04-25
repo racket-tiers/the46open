@@ -62,7 +62,7 @@ nav {
   text-align: center;
 }
 
-nav p {
+nav a {
     flex-direction: row;
     padding-right: 15px;
     padding-left: 15px;
@@ -72,7 +72,7 @@ nav p {
     border-right: 1px solid black;*/
 }
 
-nav p:hover {
+nav a:hover {
   background-color: #03a9f4;
 }
 

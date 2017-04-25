@@ -39,17 +39,15 @@ app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
-app.listen(port, function () {
-  console.log('Listening on local host ' + port)
-})
-
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
-  console.log(req.body.email)
   pg('user_table').select().where('email', req.body.email).andWhere('password', req.body.password).then((data) => {
-    console.log(data)
     res.render('profile', {data})
   })
+})
+
+app.listen(port, function () {
+  console.log('Listening on local host ' + port)
 })
 
 // app.post('/createAccount', function(req, res, next) {
