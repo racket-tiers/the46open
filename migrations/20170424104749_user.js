@@ -4,6 +4,8 @@ exports.up = function (knex, Promise) {
     table.increments()
     table.text('first_name').notNull
     table.text('last_name').notNull
+    table.text('email').notNull
+    table.text('password').notNull
     table.text('cohort')
     table.text('slack_account').notNull
     table.text('phone_number')

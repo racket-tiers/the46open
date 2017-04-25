@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="main.css">
-        <title>The46Open</title>
-    </head>
-    <body>
-<header>
 
-  <section class="flex-container">
-    <div class="logoImg"><img src="assets/46openlogo.png" alt=""></div>
-    <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
-    </section>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <title>The46Open</title>
+</head>
 
-  <nav>
-    <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile">PROFILE</a>
-  </nav>
-</header>
+<body>
+    <header>
 
+        <section class="flex-container">
+            <div class="logoImg"><img src="assets/46openlogo.png" alt=""></div>
+            <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+        </section>
 
-<main>
+        <nav>
+            <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile">PROFILE</a>
+        </nav>
+    </header>
 
-  <form class="create-account" action="/profile" method="post">
-    <input type="email" name="email" value="" placeholder="Your Email">
-    <input type="text" name="password" value="" placeholder="Your Password">
-    <input type="text" name="passwordval" value="" placeholder="Verify Your Password">
-    <button name="button">Create Account</button>
-    <br>
+    <main>
 
-<form class="populate-account" action="/profile" method="post">
-  <input type="text" name="first_name" value="" placeholder="Your First Name">
-  <input type="text" name="last_name" value="" placeholder="Your Last Name">
-  <input type="text" name="slack" value="" placeholder="Your Slack Handle">
-  <input type="text" name="campus" value="" placeholder="Your Main Campus">
-  <button name="button">Populate Account</button>
+        <form class="create-account" action="/profile" method="post">
+            <input type="email" name="email" value="" placeholder="Your Email">
+            <input type="text" name="password" value="" placeholder="Your Password">
+            <input type="text" name="passwordval" value="" placeholder="Verify Your Password">
+            <input type="text" name="first_name" value="" placeholder="Your First Name">
+            <input type="text" name="last_name" value="" placeholder="Your Last Name">
+            <input type="text" name="slack" value="" placeholder="Your Slack Handle">
+            <input type="text" name="campus" value="" placeholder="Your Main Campus">
+            <button name="button">Populate Account</button>
+        </form>
 
-</form>
-
-</main>
+    </main>
 </body>
 
 

@@ -16,7 +16,9 @@ exports.seed = function (knex, Promise) {
           rating: 1200,
           campus: 'Platte',
           avatar_url: 'http://www.google.com',
-          description: 'Current Student'
+          description: 'Current Student',
+          email: 'jules.perryman@gmail.com',
+          password: 'password'
         },
         {
           id: 2,
@@ -29,7 +31,9 @@ exports.seed = function (knex, Promise) {
           rating: 1100,
           campus: 'Platte',
           avatar_url: 'http://www.yahoo.com',
-          description: 'LOVES PEOPLE'
+          description: 'LOVES PEOPLE',
+          email: 'michelle@gmail.com',
+          password: 'elephants'
         },
         {
           id: 3,
@@ -42,7 +46,9 @@ exports.seed = function (knex, Promise) {
           rating: 1000,
           campus: 'Platte',
           avatar_url: 'http://www.cnn.com',
-          description: 'Enjoys Baseball'
+          description: 'Enjoys Baseball',
+          email: 'jackson@gmail.com',
+          password: 'baseballs'
         },
         {
           id: 4,
@@ -52,10 +58,12 @@ exports.seed = function (knex, Promise) {
           slack_account: 'james@slack.com',
           phone_number: '303-111-1111',
           is_active: true,
-          rating: 900,
+          rating: 1400,
           campus: 'Platte',
           avatar_url: 'http://www.youtube.com',
-          description: 'Screams a lot'
+          description: 'Screams a lot',
+          email: 'michelle@gmail.com',
+          password: 'rockies'
         }
 
       ])
