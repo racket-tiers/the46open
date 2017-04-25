@@ -5,12 +5,13 @@ exports.up = function (knex, Promise) {
     table.text('first_name').notNull
     table.text('last_name').notNull
     table.text('cohort')
-    table.text('slack_account')
+    table.text('slack_account').notNull
     table.text('phone_number')
     table.boolean('is_active')
     table.integer('rating')
-    table.text('campus')
+    table.text('campus').notNull
     table.text('avatar_url')
+    table.text('description')
   })
 }
 

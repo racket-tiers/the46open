@@ -29,8 +29,18 @@ app.get('/createAccount', (req, res) => {
     res.render('createAccount')
 })
 
-app.listen(port, function() {
-    console.log('Listening on local host ' + port)
+
+app.get('/about', (req, res) => {
+  res.render('about')
+})
+
+app.get('/rules', (req, res) => {
+  res.render('rules')
+})
+
+app.listen(port, function () {
+  console.log('Listening on local host ' + port)
+
 })
 
 // app.post('/createAccount', function(req, res, next) {
