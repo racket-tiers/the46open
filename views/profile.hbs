@@ -19,9 +19,11 @@
   </nav>
 </header>
   <main>
-  <p>{{data}}</p>  
-
     <h1>WELCOME TO PROFILE PAGE</h1>
+
+    {{#each data}}
+      <h2>Welcome {{first_name}}<h2>
+    {{/each}}
   </main>
 
 </body>

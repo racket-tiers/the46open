@@ -45,7 +45,9 @@ app.listen(port, function () {
 
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
-  pg('user_table').select().where('email', req.query.email).then((data) => {
+  console.log(req.body.email)
+  pg('user_table').select().where('email', req.body.email).andWhere('password', req.body.password).then((data) => {
+    console.log(data)
     res.render('profile', {data})
   })
 })
