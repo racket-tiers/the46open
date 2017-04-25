@@ -13,39 +13,37 @@
     <div class="logoImg"><img src="assets/46openlogo.png" alt=""></div>
     <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
     </section>
+    <!-- ADD THOUGHT MODAL MENU JS VERSION  -->
+    <div class="btn-indent form-center">
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn" class="add-btn">LOG IN NOW</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="/add-link/{{this.id}}" method="post">
+          <div class="popTitles">
+          <div class="form-center">
+            <h3 class="popTitles">LOG IN TO YOUR ACCOUNT:</h3>
+              <label for="title">USERNAME:</label>
+             <input type="text" name="title" value="" placeholder="username">
+             <label for="url">PASSWORD:</label>
+             <input type="text" name="url" value="" placeholder="URL">
+             <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="password">
+             <a href="/createAccount">OR, CREATE AN ACCOUNT.</a>
+             </div>
+             </div>
+           </form>
+      </div>
+    </div>
+    </div>
+    <!-- =====================END MODAL -->
 
   <nav>
     <p>ABOUT US</p><p> RULES </p><p>PROFILE</p>
   </nav>
 </header>
-
-
-<!-- ADD THOUGHT MODAL MENU JS VERSION  -->
-<div class="btn-indent">
-<!-- Trigger/Open The Modal -->
-<button id="myBtn" class="add-btn">LOG IN NOW</button>
-<!-- The Modal -->
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <form action="/add-link/{{this.id}}" method="post">
-      <div class="popTitles">
-      <div class="form-center">
-        <h3 class="popTitles">LOG IN TO YOUR ACCOUNT:</h3>
-          <label for="title">USERNAME:</label>
-         <input type="text" name="title" value="" placeholder="username">
-         <label for="url">PASSWORD:</label>
-         <input type="text" name="url" value="" placeholder="URL">
-         <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="password">
-         <a href="/createAccount">OR, CREATE AN ACCOUNT.</a>
-         </div>
-         </div>
-       </form>
-  </div>
-</div>
-</div>
-<!-- =====================END MODAL -->
 
 <main>
   <h1>Recent Matches</h1>
