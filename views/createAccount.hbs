@@ -22,12 +22,18 @@
 
 <main>
 
-<form class="create-account" action="/profile" method="post">
+  <form class="create-account" action="/profile" method="post">
+    <input type="email" name="email" value="" placeholder="Your Email">
+    <input type="text" name="password" value="" placeholder="Your Password">
+    <input type="text" name="passwordval" value="" placeholder="Verify Your Password">
+    <button name="button">Create Account</button>
+
+<form class="populate-account" action="/profile" method="post">
   <input type="text" name="first_name" value="" placeholder="Your First Name">
   <input type="text" name="last_name" value="" placeholder="Your Last Name">
   <input type="text" name="slack" value="" placeholder="Your Slack Handle">
   <input type="text" name="campus" value="" placeholder="Your Main Campus">
-  <button name="button">Submit</button>
+  <button name="button">Populate Account</button>
 
 </form>
 
