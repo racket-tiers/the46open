@@ -15,7 +15,8 @@ exports.seed = function (knex, Promise) {
           is_active: true,
           rating: 1200,
           campus: 'Platte',
-          avatar_url: 'http://www.google.com'
+          avatar_url: 'http://www.google.com',
+          description: 'Current Student'
         },
         {
           id: 2,
@@ -27,7 +28,8 @@ exports.seed = function (knex, Promise) {
           is_active: true,
           rating: 1100,
           campus: 'Platte',
-          avatar_url: 'http://www.yahoo.com'
+          avatar_url: 'http://www.yahoo.com',
+          description: 'LOVES PEOPLE'
         },
         {
           id: 3,
@@ -39,7 +41,8 @@ exports.seed = function (knex, Promise) {
           is_active: true,
           rating: 1000,
           campus: 'Platte',
-          avatar_url: 'http://www.cnn.com'
+          avatar_url: 'http://www.cnn.com',
+          description: 'Enjoys Baseball'
         },
         {
           id: 4,
@@ -51,7 +54,8 @@ exports.seed = function (knex, Promise) {
           is_active: true,
           rating: 900,
           campus: 'Platte',
-          avatar_url: 'http://www.youtube.com'
+          avatar_url: 'http://www.youtube.com',
+          description: 'Screams a lot'
         }
 
       ])
