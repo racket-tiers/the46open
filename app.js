@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
 })
 })
 
+app.get('/createAccount', (req, res) => {
+  res.render('createAccount')
+})
+
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })
