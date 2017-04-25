@@ -22,15 +22,15 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="/add-link/{{this.id}}" method="post">
+        <form action="/profile" method="post">
           <div class="popTitles">
           <div class="form-center">
             <h3 class="popTitles">LOG IN TO YOUR ACCOUNT:</h3>
               <label for="title">USERNAME:</label>
-             <input type="text" name="title" value="" placeholder="username">
+             <input type="text" name="email" value="" placeholder="email">
              <label for="url">PASSWORD:</label>
-             <input type="text" name="url" value="" placeholder="URL">
-             <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="password">
+             <input type="password" name="password" value="" placeholder="password">
+             <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="Log in">
              <a href="/createAccount">OR, CREATE AN ACCOUNT.</a>
              </div>
              </div>

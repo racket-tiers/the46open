@@ -4,6 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
 const port = process.env.PORT || 3000
+const pg = require('./db/knex')
 
 const linkQuery = require('./db/user_info')
 
@@ -11,26 +12,26 @@ app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }))
 
 app.use(bodyParser.json())
 
+// GENERATES THE LEADERBOAD ON THE MAIN PAGE
 app.get('/', (req, res) => {
     linkQuery.getRankings()
         .then(data => {
-            res.render('index', {
-                data
-            })
+          res.render('index', {
+            data
+          })
         })
 })
 
 
 
 app.get('/createAccount', (req, res) => {
-    res.render('createAccount')
+  res.render('createAccount')
 })
-
 
 app.get('/about', (req, res) => {
   res.render('about')
@@ -39,16 +40,21 @@ app.get('/about', (req, res) => {
 app.get('/rules', (req, res) => {
   res.render('rules')
 })
-
-app.post('/profile',(req,res)=>{
+app.post('/profilecreate',(req,res)=>{
   linkQuery.addUser(req.body).then(()=>{
     res.redirect('/')
   })
 })
 
+// LOG IN TO ACCOUNT
+app.post('/profile', (req, res) => {
+  pg('user_table').select().where('email', req.body.email).andWhere('password', req.body.password).then((data) => {
+    res.render('profile', {data})
+  })
+})
+
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
-
 })
 
 // app.post('/createAccount', function(req, res, next) {
