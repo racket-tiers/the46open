@@ -28,6 +28,10 @@ app.get('/about', (req, res) => {
   res.render('about')
 })
 
+app.get('/rules', (req, res) => {
+  res.render('rules')
+})
+
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })
