@@ -89,6 +89,15 @@ main h1 {
   text-align: center;
   font-size: 50px;
   flex: 1 1 auto;
+  margin-bottom: 10px;
+}
+
+main p {
+  text-align: center;
+}
+
+main h2 {
+  text-align: center;
 }
 
 /*DELETE AFTER POPULATE DATA*/
