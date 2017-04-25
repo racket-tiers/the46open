@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
 const port = process.env.PORT || 3000
 
-const linkQuery = require('./db/user-info')
+const linkQuery = require('./db/user_info')
 
 app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
@@ -17,13 +17,15 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    linkQuery.getAll()
+    linkQuery.getRankings()
         .then(data => {
             res.render('index', {
                 data
             })
         })
 })
+
+
 
 app.get('/createAccount', (req, res) => {
     res.render('createAccount')
@@ -36,6 +38,12 @@ app.get('/about', (req, res) => {
 
 app.get('/rules', (req, res) => {
   res.render('rules')
+})
+
+app.post('/profile',(req,res)=>{
+  linkQuery.addUser(req.body).then(()=>{
+    res.redirect('/')
+  })
 })
 
 app.listen(port, function () {

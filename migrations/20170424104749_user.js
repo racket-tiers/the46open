@@ -10,7 +10,7 @@ exports.up = function (knex, Promise) {
     table.text('slack_account').notNull
     table.text('phone_number')
     table.boolean('is_active')
-    table.integer('rating')
+    table.integer('rating').defaultTo(1200)
     table.text('campus').notNull
     table.text('avatar_url')
     table.text('description')
