@@ -27,6 +27,7 @@ html, body {
 * {
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  color: #007ac1;
 }
 
 h1 {
@@ -51,12 +52,13 @@ header h1 {
   font-size: 50px;
   font-weight: lighter;
   margin-top: 20px;
+  color: #67daff;
 }
 
 nav {
   display: flex;
   height: 20px;
-  background-color: #ffc046;
+  background-color: #67daff;
   text-align: center;
 }
 
@@ -66,12 +68,12 @@ nav p {
     padding-left: 15px;
     font-size: 18px;
     margin: 0;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
+    /*border-top: 1px solid black;
+    border-right: 1px solid black;*/
 }
 
 nav p:hover {
-  background-color: #67daff;
+  background-color: #03a9f4;
 }
 
 .logoImg {
