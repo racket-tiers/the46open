@@ -42,10 +42,13 @@ app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
-// app.get('/profile/', (req, res) =>{
-//
-//        res.render('profile' {data})
-// })
+app.get('/profile/:id', (req, res) =>{
+  linkQuery.seeIfUserExists().where({
+    id: req.paramas.id
+  }).first().then(function(data){
+    res.render('profile' {data})
+  })
+})
 
 
 // create profile
