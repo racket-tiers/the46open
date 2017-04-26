@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(bodyParser.json())
+
+const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 app.use(cookieSession({
@@ -110,10 +112,13 @@ app.get('/account', (req, res) => {
 })
 
 // DELETE ACCOUNT
-app.delete('/remove?', (req, res) => {
+app.delete('/remove', (req, res) => {
   pg('user_table')
   .where('id', 400)
   .del()
+  .then(() => {
+    res.redirect('/')
+  })
 })
 
 
