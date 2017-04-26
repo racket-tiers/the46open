@@ -106,7 +106,7 @@ app.post('/profile', (req, res) => {
 })
 
 // LOAD ACCOUNT SETTINGS
-app.get('/account', (req, res) => {
+app.get('/account/:id', (req, res) => {
   // TODO ====ENTER COOKIE STUFF HERE
   pg('user_table').select().where('id', 400).then((data) => {
     res.render('account', {data})
