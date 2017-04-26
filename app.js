@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
 const port = process.env.PORT || 3000
 const pg = require('./db/knex')
-const methodOverride = require('method-override')
 
 const linkQuery = require('./db/user_info')
 
@@ -17,6 +16,8 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(bodyParser.json())
+
+const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
@@ -68,10 +69,13 @@ app.get('/account', (req, res) => {
 })
 
 // DELETE ACCOUNT
-app.delete('/remove?', (req, res) => {
+app.delete('/remove', (req, res) => {
   pg('user_table')
   .where('id', 400)
   .del()
+  .then(() => {
+    res.redirect('/')
+  })
 })
 
 app.listen(port, function () {
