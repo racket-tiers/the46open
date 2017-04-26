@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="main.css">
+        <title>The46Open</title>
+    </head>
+    <body>
+<header>
+
+  <section class="flex-container">
+    <div class="logoImg"><img src="assets/46openlogo.png" alt=""></div>
+    <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+    </section>
+
+  <nav>
+  <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile"> PROFILE </a>
+  </nav>
+</header>
+<main>
+
+  {{#each data}}
+<h1>Updates {{first_name}}?</h1>
+
+    <form class="create-account" action="/profilecreate" method="post">
+      <label for="first_name">Email:</label><br>
+        <input type="email" name="email" value="{{email}}"><br>
+        <!-- TODO ADD AVATAR -->
+        <!-- <input type="text" name="campus" value=""> {{avatar_url}} -->
+        <label for="first_name">First Name:</label><br>
+        <input type="text" name="first_name" value="{{first_name}}"><br>
+        <label for="last_name">Last Name:</label><br>
+        <input type="text" name="last_name" value="{{last_name}}"><br>
+        <label for="slack_account">Slack Handle:</label><br>
+        <input type="text" name="slack_account" value="{{slack_account}}"><br>
+        <label for="campus">Main Campus:</label><br>
+        <input type="text" name="campus" value="{{campus}}"> <br>
+        <label for="cohort">Cohort:</label><br>
+        <input type="text" name="cohort" value="{{cohort}}"><br>
+        <label for="phoneNum">Phone Number:</label><br>
+        <input type="text" name="phoneNum" value="{{phone_number}}"> <br>
+        <label for="isActive">Are you an active Player?:</label><br>
+        <input type="text" name="isActive" value="{{is_active}}"> <br>
+        <label for="description">What do you do at Galvanize? Tell us about you:</label><br>
+        <input type="text" name="description" value="{{description}}"> <br>
+        <label for="ranked">Do you want to play as a ranked player?:</label><br>
+        <input type="text" name="ranked" value="{{is_ranked}}"> <br>
+        <label for="ranked">* Being ranked will allow you to have competitive matches, and level up</label><br>
+        <!-- TODO  udpate password change option -->
+        <!-- <input type="text" name="password" value=""> {{avatar_url}} -->
+        <button>Update Account Settings</button>
+
+
+    </form>
+    <form method="POST" action="/remove?_method=DELETE">
+      <button type="submit">Delete Account</button>
+    </form>
+  {{/each}}
+
+</main>
+</body>
+
+
+
+
+</html>

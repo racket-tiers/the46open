@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 const pg = require('./db/knex')
 const cookieSession = require('cookie-session')
 const key = process.env.COOKIE_KEY || 'asdfasdf'
-
+const methodOverride = require('method-override')
 const linkQuery = require('./db/user_info')
 
 app.use('/', express.static('public'))
@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(bodyParser.json())
+app.use(methodOverride('_method'))
 
 app.use(cookieSession({
   name: 'session',
@@ -33,8 +34,6 @@ app.get('/', (req, res) => {
         })
 })
 
-
-
 app.get('/createAccount', (req, res) => {
   res.render('createAccount')
 })
@@ -47,7 +46,7 @@ app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
-
+//create profile
 app.post('/profilecreate',(req,res)=>{
   console.log('anything');
   linkQuery.seeIfUserExists().where({
@@ -71,7 +70,14 @@ app.post('/profilecreate',(req,res)=>{
     }
   })
 })
+// app.post('/profilecreate', (req, res) => {
+//   linkQuery.addUser(req.body).then(() => {
+//     res.redirect('/profile')
+//   })
+// })
 
+
+// LOG IN TO ACCOUNT
 app.post('/profile',(req,res)=>{
   linkQuery.seeIfUserExists().where({
     email: req.body.email,
@@ -95,38 +101,22 @@ app.post('/profile',(req,res)=>{
   })
 })
 
+// UPDATE ACCOUNT
+app.get('/account', (req, res) => {
+  // ====ENTER COOKIE STUFF HERE
+  pg('user_table').select().where('id', 400).then((data) => {
+    res.render('account', {data})
+  })
+})
+
+// DELETE ACCOUNT
+app.delete('/remove?', (req, res) => {
+  pg('user_table')
+  .where('id', 400)
+  .del()
+})
+
 
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })
-
-// app.post('/createAccount', function(req, res, next) {
-//     queries.findUserIfExists().where({
-//             email: req.body.email
-//         }).first()
-//         .then(function(user) {
-//                 if (user) {
-//                     res.send(user)
-//                 } else {
-//                     bcrypt.genSalt(8, function(err, salt) {
-//                         console.log(salt);
-//                         bcrypt.hash(req.body.password, sal, function(err, hash) {
-//                             console.log(hash);
-//                             hashedPassword = hash
-//                             porcess.exit()
-//                         })
-//                         }).then(function() {
-//                             queries.userTable(req.body, hashedPassword)
-//                                 .then(function() {
-//                                     res.send("new user!")
-//                                 })
-//                             .catch(function(err){
-//                                 console.log(err);
-//                             })
-//                     })
-//
-//                 }
-//
-//
-//             }
-//         })
