@@ -8,17 +8,12 @@ const pg = require('./db/knex')
 const cookieSession = require('cookie-session')
 const key = process.env.COOKIE_KEY || 'asdfasdf'
 const linkQuery = require('./db/user_info')
+const methodOverride = require('method-override')
 
 app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
-
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-
-const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 app.use(cookieSession({
@@ -73,11 +68,6 @@ app.post('/profilecreate', (req, res) => {
     }
   })
 })
-// app.post('/profilecreate', (req, res) => {
-//   linkQuery.addUser(req.body).then(() => {
-//     res.redirect('/profile')
-//   })
-// })
 
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
@@ -90,6 +80,7 @@ app.post('/profile', (req, res) => {
       console.log('found one')
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
+          // TODO NEEDS COOKIE
           req.session.id = req.body.id
 // TODO THIS NEEDS TO HAVE A "/" BECAUSE REDIRECT
           res.redirect('profile', {data})
@@ -103,17 +94,18 @@ app.post('/profile', (req, res) => {
   })
 })
 
-// UPDATE ACCOUNT
+// LOAD ACCOUNT SETTINGS
 app.get('/account', (req, res) => {
-  // ====ENTER COOKIE STUFF HERE
+  // TODO ====ENTER COOKIE STUFF HERE
   pg('user_table').select().where('id', 400).then((data) => {
     res.render('account', {data})
   })
 })
 
-// DELETE ACCOUNT
+// DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.delete('/remove', (req, res) => {
   pg('user_table')
+  // TODO: COOKIE STUFF HERE
   .where('id', 400)
   .del()
   .then(() => {
