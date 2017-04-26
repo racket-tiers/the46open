@@ -44,9 +44,9 @@ app.get('/rules', (req, res) => {
 
 app.get('/profile/:id', (req, res) =>{
   linkQuery.seeIfUserExists().where({
-    id: req.paramas.id
+    id: req.params.id
   }).first().then(function(data){
-    res.render('profile' {data})
+    res.render('profile', data)
   })
 })
 
@@ -69,18 +69,18 @@ app.post('/profilecreate', (req, res) => {
         req.body.password = hash
         console.log('req body:')
         console.log(req.body)
-        linkQuery.storeEmailAndPassword(req.body)
-        let newData = req.body
-        .then(function (newData) {
-
-          // TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
-          res.render('profile', {newData})
+        linkQuery.storeEmailAndPassword(req.body).then(function() {
+          linkQuery.seeIfUserExists().where({
+            email: req.body.email
+          }).first().then(function(user) {
+            res.redirect('/profile/' + user.id)
+          })
         })
-      })
-    }
-  })
-})
 
+      }
+  )}
+})
+})
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
