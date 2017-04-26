@@ -51,6 +51,14 @@ app.post('/profile', (req, res) => {
   })
 })
 
+// UPDATE ACCOUNT
+app.get('/account', (req, res) => {
+  // ====ENTER COOKIE STUFF HERE
+  pg('user_table').select().where('id', 200).then((data) => {
+    res.render('account', {data})
+  })
+})
+
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })

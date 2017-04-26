@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="main.css">
+        <title>The46Open</title>
+    </head>
+    <body>
+<header>
+
+  <section class="flex-container">
+    <div class="logoImg"><img src="assets/46openlogo.png" alt=""></div>
+    <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+    </section>
+
+  <nav>
+  <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a>
+  </nav>
+</header>
+<main>
+
+  {{#each data}}
+<h1>Updates {{first_name}}?</h1> 
+
+    <form class="create-account" action="/profilecreate" method="post">
+        <input type="email" name="email" value="{{email}}"><br>
+        <!-- TODO ADD AVATAR -->
+        <!-- <input type="text" name="campus" value=""> {{avatar_url}} -->
+        <input type="text" name="first_name" value="{{first_name}}"><br>
+        <input type="text" name="last_name" value="{{last_name}}"><br>
+        <input type="text" name="slack_account" value="{{slack_account}}"><br>
+        <input type="text" name="campus" value="{{campus}}"> <br>
+        <input type="text" name="cohort" value="{{cohort}}"><br>
+        <input type="text" name="phoneNum" value="{{phone_number}}"> <br>
+        <input type="text" name="isActive" value="{{is_active}}"> <br>
+        <input type="text" name="description" value="{{description}}"> <br>
+        <input type="text" name="email" value="{{email}}"> <br>
+        <input type="text" name="ranked" value="{{is_ranked}}"> <br>
+        <!-- TODO  udpate password change option -->
+        <!-- <input type="text" name="password" value=""> {{avatar_url}} -->
+        <button>Update Account Settings</button><button>Delete Account</button>
+    </form>
+
+  {{/each}}
+
+</main>
+</body>
+
+
+
+
+</html>
