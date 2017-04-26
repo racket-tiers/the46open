@@ -77,11 +77,9 @@ app.post('/profile', (req, res) => {
   .then(function (user) {
     if (user) {
       console.log('found one')
-      console.log(req.body.password)
-      console.log(user.password)
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
-          // NEEDS COOKIE
+          // TODO NEEDS COOKIE
           req.session.id = req.body.id
           res.redirect('profile', {data})
         } else {
@@ -94,17 +92,18 @@ app.post('/profile', (req, res) => {
   })
 })
 
-// UPDATE ACCOUNT
+// LOAD ACCOUNT SETTINGS
 app.get('/account', (req, res) => {
-  // ====ENTER COOKIE STUFF HERE
+  // TODO ====ENTER COOKIE STUFF HERE
   pg('user_table').select().where('id', 400).then((data) => {
     res.render('account', {data})
   })
 })
 
-// DELETE ACCOUNT
+// DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.delete('/remove', (req, res) => {
   pg('user_table')
+  // TODO: COOKIE STUFF HERE
   .where('id', 400)
   .del()
   .then(() => {
