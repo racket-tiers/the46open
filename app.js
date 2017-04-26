@@ -104,9 +104,10 @@ app.post('/profile', (req, res) => {
 
 // LOAD ACCOUNT SETTINGS
 app.get('/account/:id', (req, res) => {
-  // TODO ====ENTER COOKIE STUFF HERE
-  pg('user_table').select().where('id', 400).then((data) => {
-    res.render('account', {data})
+  linkQuery.seeIfUserExists().where({
+    id: req.params.id
+  }).first().then(function (data) {
+    res.render('account', data)
   })
 })
 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="main.css">
+        <!-- <link type="text/css" rel="stylesheet" href="main.css"> -->
         <title>The46Open</title>
     </head>
     <body>
@@ -20,7 +20,7 @@
 </header>
 <main>
 
-  {{#each data}}
+  <!-- {{#each data}} -->
 <h1>Updates {{first_name}}?</h1>
 
     <form class="create-account" method="post" action="/update?_method=PUT">
@@ -55,7 +55,7 @@
     <form method="POST" action="/remove?_method=DELETE">
       <button type="submit">Delete Account</button>
     </form>
-  {{/each}}
+  <!-- {{/each}} -->
 
 </main>
 </body>
