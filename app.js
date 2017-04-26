@@ -42,11 +42,11 @@ app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
-app.get('/profile/:id', (req, res) =>{
+app.get('/profile/:id', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.paramas.id
-  }).first().then(function(data){
-    res.render('profile' {data})
+  }).first().then(function (data) {
+    res.render('profile', {data})
   })
 })
 
@@ -56,25 +56,16 @@ app.post('/profilecreate', (req, res) => {
     email: req.body.email
   }).first()
   .then(function (user) {
-    // IF USER EXISTS
     if (user) {
-      console.log('user:')
-      console.log(user)
-      // TODO TURN THIS INTO AN ALERT OF SOME KIND
       console.log('you already have an account')
       res.render('createAccount')
-      // IF USER DOES NOT EXIST
     } else {
-      bcrypt.hash(req.body.password, 10).then(function (hash) {
+      bcrypt.hash(req.body.password, 10)
+      .then(function (hash) {
         req.body.password = hash
-        console.log('req body:')
-        console.log(req.body)
         linkQuery.storeEmailAndPassword(req.body)
-        let newData = req.body
-        .then(function (newData) {
-
-          // TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
-          res.render('profile', {newData})
+        .then(function () {
+          res.redirect('/profile/' + user.id)
         })
       })
     }
@@ -85,16 +76,14 @@ app.post('/profilecreate', (req, res) => {
 app.post('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
     email: req.body.email
-// TODO .FIRST IS JQUERY COMMAND
   }).first()
   .then(function (user) {
     if (user) {
       console.log('found one')
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
-// console.log(user);
           req.session.id = user.id
-          res.redirect('profile' + user.id)
+          res.redirect('/profile/' + user.id)
         } else {
           res.send('incorrect password')
         }
@@ -123,6 +112,17 @@ app.delete('/remove', (req, res) => {
     res.redirect('/')
   })
 })
+
+// UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
+// app.put('/update', (req, res) => {
+//   pg('user_table')
+//   .where('id', 400)
+//   TODO Cookie Stuff
+//   .()
+//   .then(() => {
+//     res.redirect('/profile/' + cookie stuff)
+//   })
+// })
 
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
