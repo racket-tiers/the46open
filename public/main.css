@@ -129,6 +129,12 @@ form {
 
 form input {
   margin: 5px;
+  width: 40%;
+  font-size: 20px;
+}
+
+form button {
+  font-size 25px;
 }
 
 
