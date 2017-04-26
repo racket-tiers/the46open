@@ -8,17 +8,12 @@ const pg = require('./db/knex')
 const cookieSession = require('cookie-session')
 const key = process.env.COOKIE_KEY || 'asdfasdf'
 const linkQuery = require('./db/user_info')
+const methodOverride = require('method-override')
 
 app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
-
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-
-const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 app.use(cookieSession({
@@ -70,11 +65,6 @@ app.post('/profilecreate', (req, res) => {
     }
   })
 })
-// app.post('/profilecreate', (req, res) => {
-//   linkQuery.addUser(req.body).then(() => {
-//     res.redirect('/profile')
-//   })
-// })
 
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
@@ -84,8 +74,11 @@ app.post('/profile', (req, res) => {
   .then(function (user) {
     if (user) {
       console.log('found one')
+      console.log(req.body.password)
+      console.log(user.password)
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
+          // NEEDS COOKIE
           req.session.id = req.body.id
           res.redirect('profile', {data})
         } else {
