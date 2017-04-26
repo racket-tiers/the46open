@@ -18,7 +18,7 @@ exports.seed = function (knex, Promise) {
         {
           user_1: 100,
           user_2: 300,
-          winner: 200,
+          winner: 300,
           user1_points: 0,
           user2_points: 21,
           date: 'Jan 6, 2017',

@@ -14,6 +14,7 @@ exports.up = function (knex, Promise) {
     table.text('campus').notNull
     table.text('avatar_url')
     table.text('description')
+    table.boolean('is_ranked')
   })
 }
 

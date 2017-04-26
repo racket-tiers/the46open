@@ -18,7 +18,8 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.google.com',
           description: 'Current Student',
           email: 'jules.perryman@gmail.com',
-          password: 'password'
+          password: 'password',
+          is_ranked: true
         },
         {
           id: 200,
@@ -33,7 +34,8 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.yahoo.com',
           description: 'LOVES PEOPLE',
           email: 'michelle@gmail.com',
-          password: 'elephants'
+          password: 'elephants',
+          is_ranked: false
         },
         {
           id: 300,
@@ -48,7 +50,8 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.cnn.com',
           description: 'Enjoys Baseball',
           email: 'jackson@gmail.com',
-          password: 'baseballs'
+          password: 'baseballs',
+          is_ranked: true
         },
         {
           id: 400,
@@ -63,7 +66,8 @@ exports.seed = function (knex, Promise) {
           avatar_url: 'http://www.youtube.com',
           description: 'Screams a lot',
           email: 'michelle@gmail.com',
-          password: 'rockies'
+          password: 'rockies',
+          is_ranked: true
         }
 
       ])
