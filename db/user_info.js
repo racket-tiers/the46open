@@ -18,9 +18,18 @@ function seeIfUserExists() {
 }
 function storeEmailAndPassword(obj) {
   return pg('user_table').insert({
-    // first_name: obj.first_name
+    first_name: obj.first_name,
+    last_name: obj.last_name,
     email: obj.email,
-    password: obj.password
+    password: obj.password,
+    cohort: obj.cohort,
+    slack_account: obj.slack_account,
+    phone_number: obj.phone_number,
+    rating: obj.rating,
+    campus: obj.campus,
+    avatar_url: obj.avatar_url,
+    description: obj.description,
+    is_ranked: obj.is_ranked
 
   })
 }

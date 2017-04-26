@@ -50,28 +50,31 @@ app.get('/profile/:id', (req, res) =>{
   })
 })
 
-
 // create profile
 app.post('/profilecreate', (req, res) => {
-  console.log('anything')
   linkQuery.seeIfUserExists().where({
     email: req.body.email
   }).first()
   .then(function (user) {
+    // IF USER EXISTS
     if (user) {
+      console.log('user:')
       console.log(user)
-// TODO TURN THIS INTO AN ALERT OF SOME KIND
+      // TODO TURN THIS INTO AN ALERT OF SOME KIND
       console.log('you already have an account')
       res.render('createAccount')
+      // IF USER DOES NOT EXIST
     } else {
       bcrypt.hash(req.body.password, 10).then(function (hash) {
         req.body.password = hash
+        console.log('req body:')
         console.log(req.body)
-// TODO STORE ALL FROM DATA
         linkQuery.storeEmailAndPassword(req.body)
-        .then(function () {
-// TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
-          res.render('profile')
+        let newData = req.body
+        .then(function (newData) {
+
+          // TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
+          res.render('profile', {newData})
         })
       })
     }
@@ -89,9 +92,8 @@ app.post('/profile', (req, res) => {
       console.log('found one')
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
-
 // console.log(user);
-        req.session.id = user.id
+          req.session.id = user.id
           res.redirect('profile' + user.id)
         } else {
           res.send('incorrect password')
