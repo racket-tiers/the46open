@@ -59,6 +59,12 @@
             <span class="first_name">{{this.rating}} </span>&nbsp&nbsp
         </div>
     {{/each}}
+
+
+<button class="random-match-btn" id="matchBtn">Match Me!: Random</button>
+<div class="random-match"></div>
+
+
   </main>
 
 
@@ -85,9 +91,15 @@
             modal.style.display = "none";
         }
     }
+// END MODAL HERE =============
+
+var buttonMatch = document.getElementById('matchBtn')
+buttonMatch.addEventListener('click', () => {
+  console.log('click')
+})
     </script>
 
-    <!-- =================END MODAL SCRIPT -->
+
 </body>
 
 

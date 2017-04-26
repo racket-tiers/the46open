@@ -1,5 +1,5 @@
 // var pg = require('/knex')
-//
+
 // function getAll(){
 //     return pg('post').select()
 // }
@@ -15,3 +15,8 @@
 // function userTable(obj, hashedPassword){
 //     return('myusers')
 // }
+
+// var buttonMatch = document.getElementById('matchBtn')
+// buttonMatch.addEventListener('click', () => {
+//   console.log('click')
+// })
