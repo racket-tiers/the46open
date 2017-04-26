@@ -17,6 +17,8 @@ function seeIfUserExists() {
   return pg('user_table').select()
 }
 function storeEmailAndPassword(obj) {
+  console.log('got it!');
+  console.log(obj);
   return pg('user_table').insert({
     first_name: obj.first_name,
     last_name: obj.last_name,

@@ -44,7 +44,7 @@ app.get('/rules', (req, res) => {
 
 app.get('/profile/:id', (req, res) => {
   linkQuery.seeIfUserExists().where({
-    id: req.paramas.id
+    id: req.params.id
   }).first().then(function (data) {
     res.render('profile', {data})
   })
@@ -63,15 +63,19 @@ app.post('/profilecreate', (req, res) => {
       bcrypt.hash(req.body.password, 10)
       .then(function (hash) {
         req.body.password = hash
-        linkQuery.storeEmailAndPassword(req.body)
-        .then(function () {
-          res.redirect('/profile/' + user.id)
+        console.log('req body:')
+        console.log(req.body)
+        linkQuery.storeEmailAndPassword(req.body).then(function() {
+          linkQuery.seeIfUserExists().where({
+            email: req.body.email
+          }).first().then(function(user) {
+            res.redirect('/profile/' + user.id)
+          })
         })
-      })
-    }
-  })
+      }
+  )}
 })
-
+})
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
@@ -95,7 +99,7 @@ app.post('/profile', (req, res) => {
 })
 
 // LOAD ACCOUNT SETTINGS
-app.get('/account', (req, res) => {
+app.get('/account/:id', (req, res) => {
   // TODO ====ENTER COOKIE STUFF HERE
   pg('user_table').select().where('id', 400).then((data) => {
     res.render('account', {data})
