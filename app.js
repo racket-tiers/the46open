@@ -51,14 +51,17 @@ app.post('/profilecreate', (req, res) => {
   .then(function (user) {
     if (user) {
       console.log(user)
+// TODO TURN THIS INTO AN ALERT OF SOME KIND
       console.log('you already have an account')
       res.render('createAccount')
     } else {
       bcrypt.hash(req.body.password, 10).then(function (hash) {
         req.body.password = hash
         console.log(req.body)
+// TODO STORE ALL FROM DATA
         linkQuery.storeEmailAndPassword(req.body)
         .then(function () {
+// TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
           res.render('profile')
         })
       })
