@@ -7,7 +7,6 @@ const port = process.env.PORT || 3000
 const pg = require('./db/knex')
 const cookieSession = require('cookie-session')
 const key = process.env.COOKIE_KEY || 'asdfasdf'
-const methodOverride = require('method-override')
 const linkQuery = require('./db/user_info')
 
 app.use('/', express.static('public'))
@@ -25,7 +24,7 @@ app.use(methodOverride('_method'))
 app.use(cookieSession({
   name: 'session',
   keys: [key],
-  maxAge: 24*60*60*1000
+  maxAge: 24 * 60 * 60 * 1000
 }))
 
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
@@ -48,24 +47,23 @@ app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
-//create profile
-app.post('/profilecreate',(req,res)=>{
-  console.log('anything');
+// create profile
+app.post('/profilecreate', (req, res) => {
+  console.log('anything')
   linkQuery.seeIfUserExists().where({
     email: req.body.email
   }).first()
-  .then(function(user){
-    if(user){
-      console.log(user);
-      console.log('you already have an account');
+  .then(function (user) {
+    if (user) {
+      console.log(user)
+      console.log('you already have an account')
       res.render('createAccount')
-    }
-    else{
-      bcrypt.hash(req.body.password, 10).then(function(hash){
-        req.body.password = hash;
-        console.log(req.body);
+    } else {
+      bcrypt.hash(req.body.password, 10).then(function (hash) {
+        req.body.password = hash
+        console.log(req.body)
         linkQuery.storeEmailAndPassword(req.body)
-        .then(function(){
+        .then(function () {
           res.render('profile')
         })
       })
@@ -78,26 +76,23 @@ app.post('/profilecreate',(req,res)=>{
 //   })
 // })
 
-
 // LOG IN TO ACCOUNT
-app.post('/profile',(req,res)=>{
+app.post('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
-    email: req.body.email,
+    email: req.body.email
   }).first()
-  .then(function(user){
-    if(user){
-      console.log('found one');
-      bcrypt.compare(req.body.password, user.password).then(function(data){
-        if(data){
+  .then(function (user) {
+    if (user) {
+      console.log('found one')
+      bcrypt.compare(req.body.password, user.password).then(function (data) {
+        if (data) {
           req.session.id = req.body.id
           res.redirect('profile', {data})
-        }
-        else{
+        } else {
           res.send('incorrect password')
         }
       })
-    }
-    else{
+    } else {
       res.send('invalid login')
     }
   })
@@ -120,7 +115,6 @@ app.delete('/remove', (req, res) => {
     res.redirect('/')
   })
 })
-
 
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
