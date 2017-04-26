@@ -38,18 +38,24 @@ app.get('/about', (req, res) => {
 app.get('/rules', (req, res) => {
   res.render('rules')
 })
+
+app.get('/profile', (req, res) => {
+  // TODO ADD MIDDLEWHERE TO DIRECT TO CURRENT USER
+  pg('user_table').select().where('id', 200).then((data) => {
+    res.render('profile', {data})
+  })
+})
+
 app.post('/profilecreate', (req, res) => {
   linkQuery.addUser(req.body).then(() => {
-    res.redirect('/')
+    res.redirect('/profile')
   })
 })
 
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
   pg('user_table').select().where('email', req.body.email).andWhere('password', req.body.password).then((data) => {
-    res.render('profile', {
-      data
-    })
+    res.render('profile', {data})
   })
 })
 
