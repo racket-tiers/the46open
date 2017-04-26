@@ -13,20 +13,22 @@ function addUser(obj) {
 
 
 
-// function seeIfUserExists() {
-//   return pg('user_table').select()
-// }
-// function storeEmailAndPassword(obj, hashedPassword) {
-//   return pg('user_table').insert({
-//     email: obj.email,
-//     password: obj.password
-//   })
-// }
+function seeIfUserExists() {
+  return pg('user_table').select()
+}
+function storeEmailAndPassword(obj) {
+  return pg('user_table').insert({
+    email: obj.email,
+    password: obj.password
+  })
+}
 
 
 
 
 module.exports = {
   getRankings,
-  addUser
+  addUser,
+  seeIfUserExists,
+  storeEmailAndPassword
 }
