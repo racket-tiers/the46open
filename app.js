@@ -8,17 +8,12 @@ const pg = require('./db/knex')
 const cookieSession = require('cookie-session')
 const key = process.env.COOKIE_KEY || 'asdfasdf'
 const linkQuery = require('./db/user_info')
+const methodOverride = require('method-override')
 
 app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
-
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-
-const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 app.use(cookieSession({
@@ -62,36 +57,36 @@ app.post('/profilecreate', (req, res) => {
   .then(function (user) {
     if (user) {
       console.log(user)
+// TODO TURN THIS INTO AN ALERT OF SOME KIND
       console.log('you already have an account')
       res.render('createAccount')
     } else {
       bcrypt.hash(req.body.password, 10).then(function (hash) {
         req.body.password = hash
         console.log(req.body)
+// TODO STORE ALL FROM DATA
         linkQuery.storeEmailAndPassword(req.body)
         .then(function () {
+// TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
           res.render('profile')
         })
       })
     }
   })
 })
-// app.post('/profilecreate', (req, res) => {
-//   linkQuery.addUser(req.body).then(() => {
-//     res.redirect('/profile')
-//   })
-// })
 
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
     email: req.body.email
+// TODO .FIRST IS JQUERY COMMAND
   }).first()
   .then(function (user) {
     if (user) {
       console.log('found one')
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
+
 // console.log(user);
         req.session.id = user.id
           res.redirect('profile' + user.id)
@@ -105,17 +100,18 @@ app.post('/profile', (req, res) => {
   })
 })
 
-// UPDATE ACCOUNT
+// LOAD ACCOUNT SETTINGS
 app.get('/account', (req, res) => {
-  // ====ENTER COOKIE STUFF HERE
+  // TODO ====ENTER COOKIE STUFF HERE
   pg('user_table').select().where('id', 400).then((data) => {
     res.render('account', {data})
   })
 })
 
-// DELETE ACCOUNT
+// DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.delete('/remove', (req, res) => {
   pg('user_table')
+  // TODO: COOKIE STUFF HERE
   .where('id', 400)
   .del()
   .then(() => {
