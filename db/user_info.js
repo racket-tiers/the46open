@@ -18,8 +18,10 @@ function seeIfUserExists() {
 }
 function storeEmailAndPassword(obj) {
   return pg('user_table').insert({
+    // first_name: obj.first_name
     email: obj.email,
     password: obj.password
+
   })
 }
 

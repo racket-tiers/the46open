@@ -42,6 +42,12 @@ app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
+// app.get('/profile/', (req, res) =>{
+//
+//        res.render('profile' {data})
+// })
+
+
 // create profile
 app.post('/profilecreate', (req, res) => {
   console.log('anything')
@@ -80,10 +86,10 @@ app.post('/profile', (req, res) => {
       console.log('found one')
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
-          // TODO NEEDS COOKIE
-          req.session.id = req.body.id
-// TODO THIS NEEDS TO HAVE A "/" BECAUSE REDIRECT
-          res.redirect('profile', {data})
+
+// console.log(user);
+        req.session.id = user.id
+          res.redirect('profile' + user.id)
         } else {
           res.send('incorrect password')
         }
