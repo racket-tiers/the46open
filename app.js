@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
 const port = process.env.PORT || 3000
 const pg = require('./db/knex')
+const methodOverride = require('method-override')
 
 const linkQuery = require('./db/user_info')
 
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(bodyParser.json())
+app.use(methodOverride('_method'))
 
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
 app.get('/', (req, res) => {
