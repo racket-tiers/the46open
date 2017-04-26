@@ -46,7 +46,7 @@ app.get('/profile/:id', (req, res) =>{
   linkQuery.seeIfUserExists().where({
     id: req.paramas.id
   }).first().then(function(data){
-    res.render('profile' {data})
+    res.render('profile', {data})
   })
 })
 
@@ -57,21 +57,26 @@ app.post('/profilecreate', (req, res) => {
   }).first()
   .then(function (user) {
     // IF USER EXISTS
-    if (user) {
-      console.log('user:')
-      console.log(user)
-      // TODO TURN THIS INTO AN ALERT OF SOME KIND
-      console.log('you already have an account')
-      res.render('createAccount')
-      // IF USER DOES NOT EXIST
-    } else {
+    // if (user) {
+    //   console.log('user:')
+    //   console.log(user)
+    //   // TODO TURN THIS INTO AN ALERT OF SOME KIND
+    //   console.log('you already have an account')
+    //   res.render('createAccount')
+    //   // IF USER DOES NOT EXIST
+    // } else {
+      console.log('made it');
       bcrypt.hash(req.body.password, 10).then(function (hash) {
         req.body.password = hash
-        console.log('req body:')
-        console.log(req.body)
+        // console.log('req body:')
+
         linkQuery.storeEmailAndPassword(req.body)
-        let newData = req.body
+        console.log(req.body)
+        linkQuery.seeIfUserExists().where(
+          'email', req.body.email)
+        // let newData = req.body
         .then(function (newData) {
+          console.log(newData);
 
           // TODO REDIRECT TO CURRENT USERS PROFILE USING COOKIE TO ACCESS DATA
           res.render('profile', {newData})
