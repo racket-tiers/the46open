@@ -83,6 +83,7 @@ app.post('/profilecreate', (req, res) => {
 app.post('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
     email: req.body.email
+// TODO .FIRST IS JQUERY COMMAND
   }).first()
   .then(function (user) {
     if (user) {
@@ -90,6 +91,7 @@ app.post('/profile', (req, res) => {
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
           req.session.id = req.body.id
+// TODO THIS NEEDS TO HAVE A "/" BECAUSE REDIRECT
           res.redirect('profile', {data})
         } else {
           res.send('incorrect password')
