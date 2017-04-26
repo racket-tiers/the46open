@@ -41,7 +41,7 @@ app.get('/rules', (req, res) => {
 
 app.get('/profile', (req, res) => {
   // TODO ADD MIDDLEWHERE TO DIRECT TO CURRENT USER
-  pg('user_table').select().where('id', 200).then((data) => {
+  pg('user_table').select().where('id', 400).then((data) => {
     res.render('profile', {data})
   })
 })
@@ -62,9 +62,16 @@ app.post('/profile', (req, res) => {
 // UPDATE ACCOUNT
 app.get('/account', (req, res) => {
   // ====ENTER COOKIE STUFF HERE
-  pg('user_table').select().where('id', 200).then((data) => {
+  pg('user_table').select().where('id', 400).then((data) => {
     res.render('account', {data})
   })
+})
+
+// DELETE ACCOUNT
+app.delete('/remove?', (req, res) => {
+  pg('user_table')
+  .where('id', 400)
+  .del()
 })
 
 app.listen(port, function () {
