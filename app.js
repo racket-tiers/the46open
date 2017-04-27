@@ -117,10 +117,7 @@ app.delete('/remove/:id', (req, res) => {
   })
 })
 
-
-//Find Available Users
-
-
+// Find Available Users
 
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.put('/update/:id', (req, res) => {
@@ -133,24 +130,18 @@ app.put('/update/:id', (req, res) => {
     })
 })
 
-<<<<<<< HEAD
-=======
-
-//Log new match results
+// Log new match results
 app.get('/logmatch/:id', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.params.id
   })
   linkQuery.getAllUsers()
   .then(function (data) {
-    console.log(data);
-    res.render('logmatch' , {data})
+    console.log(data)
+    res.render('logmatch', {data})
   })
 })
 
-// return pg('link').where('id', obj['id']).update('votes', +obj['votes'] + 1)
-
->>>>>>> 678029f87392f673276cd46e3ca69d4d0c65c842
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })
