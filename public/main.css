@@ -198,3 +198,8 @@ form button {
   font-size: 25px;
   margin-bottom: 20px;
 }
+
+
+.reportScore{
+    border: solid black 1px
+}

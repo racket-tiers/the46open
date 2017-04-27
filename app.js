@@ -117,6 +117,11 @@ app.delete('/remove/:id', (req, res) => {
   })
 })
 
+
+//Find Available Users
+
+
+
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.put('/update/:id', (req, res) => {
   pg('user_table')
