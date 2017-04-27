@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/main.css">
+    <title>The46Open</title>
+</head>
+
+<body>
+    <header>
+
+        <section class="flex-container">
+            <div class="logoImg"><img src="/assets/46openlogo.png" alt=""></div>
+            <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+        </section>
+
+        <nav>
+            <a href="/">LOG OUT</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/account/{{id}}"> ACCOUNT </a>
+        </nav>
+    </header>
+<main>
+
+
+
+<div class="reportScore">
+    <h1>Report Rescent Match</h1>
+        <form action="profile.hbs" method="get">
+
+          <div class="input">
+            <label for="myScore">My Score: </label>
+            <input type="number" name="number" id="myScore" value="" autofocus="">
+         </div>
+
+
+    <div>
+      <label for="opponent_name">Select Opponent</label>
+      <select name="opponent_name">
+        {{#each data}}
+          <option value="{{this.id}}">{{this.first_name}}{{this.last_name}}</option>
+          {{/each}}
+      </select>
+        </div>
+
+        <div class="input">
+          <label for="opponent Score">Opponent Score: </label>
+          <input type="number" name="number" id="opponentScore" value="" autofocus="">
+        </div>
+
+            <div class="input">
+            <label for="matchComment">Match Comments</label> <br>
+            <textarea name="matchComment" id="matchComment" rows="5" cols="50"></textarea>
+         </div>
+
+            <input type="submit" name="submit" id="submit" value="submit score">
+
+        </form>
+</div>
+
+
+    <h1>Recent Scores</h1>
+
+
+
+
+  </main>
+
+
+</body>
+
+
+
+
+
+</html>
