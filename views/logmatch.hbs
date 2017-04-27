@@ -27,34 +27,46 @@
 
 <div class="reportScore">
     <h1>Report Rescent Match</h1>
-        <form action="profile.hbs" method="get">
+        <form method="post" action="/storematch">
+
+          <div>
+            <label for="your_name">Select Yourself</label>
+            <select name="user_1">
+              {{#each data}}
+                <option name="user_1" value="{{this.id}}">{{this.first_name}}{{this.last_name}}</option>
+                {{/each}}
+            </select>
+          </div>
 
           <div class="input">
             <label for="myScore">My Score: </label>
-            <input type="number" name="number" id="myScore" value="" autofocus="">
+            <input type="number" name="user1_points" id="myScore" value="" autofocus="">
          </div>
 
 
     <div>
       <label for="opponent_name">Select Opponent</label>
-      <select name="opponent_name">
+      <select name="user_2">
         {{#each data}}
-          <option value="{{this.id}}">{{this.first_name}}{{this.last_name}}</option>
+          <option name="user_2" value="{{this.id}}">{{this.first_name}}{{this.last_name}}</option>
           {{/each}}
       </select>
-        </div>
+    </div>
 
         <div class="input">
           <label for="opponent Score">Opponent Score: </label>
-          <input type="number" name="number" id="opponentScore" value="" autofocus="">
+          <input type="number" name="user2_points" id="opponentScore" value="" autofocus="">
         </div>
 
-            <div class="input">
+            <!-- <div class="input">
             <label for="matchComment">Match Comments</label> <br>
             <textarea name="matchComment" id="matchComment" rows="5" cols="50"></textarea>
-         </div>
-
-            <input type="submit" name="submit" id="submit" value="submit score">
+         </div> -->
+           <input type="hidden" name="date" value="2017-02-02">
+          <input type="hidden" name="winner" value="200">
+          <input type="hidden" name="user1_endorsed" value="true">
+          <input type="hidden" name="user2_endorsed" value="true">
+          <button>Submit</button>
 
         </form>
 </div>

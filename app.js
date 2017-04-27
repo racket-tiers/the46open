@@ -112,7 +112,6 @@ app.delete('/remove/:id', (req, res) => {
   .where({id: req.params.id})
   .del()
   .then((id) => {
-    console.log('user was deleted')
     res.redirect('/')
   })
 })
@@ -137,9 +136,19 @@ app.get('/logmatch/:id', (req, res) => {
   })
   linkQuery.getAllUsers()
   .then(function (data) {
-    console.log(data)
     res.render('logmatch', {data})
   })
+})
+
+//storing match results
+app.post('/storematch', (req, res) => {
+  console.log(req.body);
+  pg('match')
+  .insert(req.body)
+  .returning('id')
+    .then((id) => {
+      res.redirect('/')
+    })
 })
 
 app.listen(port, function () {
