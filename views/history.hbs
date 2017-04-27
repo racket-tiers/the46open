@@ -26,9 +26,15 @@
         <div class="reportScore">
             <h1>YOUR HISTORY:</h1>
 
-        {{#each data}}
-          <!-- HERE -->
-          {{/each}}
+{{#each data}}
+        <h2>Match Results:</h2>
+        <p>player 1: {{first_name}}</p>
+        <p>Player 1 points: {{user1_points}}</p>
+        <p>Player 2: {{opponentName}}</p>
+        <p>Player 2 points: {{user2_points}}</p>
+
+        {{/each}}
+
 
 
     </main>

@@ -26,7 +26,7 @@ app.use(cookieSession({
 app.get('/', (req, res) => {
   // API CALL HERE
   // let url= 'http://quotes.stormconsultancy.co.uk/random.json'
-  
+
   linkQuery.getRankings()
         .then(data => {
           res.render('index', {data})
@@ -153,15 +153,20 @@ app.post('/storematch', (req, res) => {
       res.redirect('/')
     })
 })
-//CREATING HISTORY FOR USERs
-app.get('/history', (req, res) => {
-  // linkQuery.seeIfUserExists().where({
-  //   id: req.params.id })
-  pg('match').select()
-  // .orWhere({user_2: req.params.id})
+
+// CREATING HISTORY FOR USERs
+app.get('/history/:id', (req, res) => {
+  pg.from('user_table')
+    .innerJoin('match', 'user_table.id', 'match.user_1')
+    .select().where('user_1', req.params.id)
+    // .andWhere('user_2', req.params.id)
   .then(function (data) {
-    console.log(data);
-    res.render('history',{data})
+    pg('user_table').select('first_name').where('user_table.id', data[0].user_2)
+    .then(function (info) {
+      data[0].opponentName = info[0].first_name
+      console.log(data)
+      res.render('history', {data: data})
+    })
   })
 })
 
