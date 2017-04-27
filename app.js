@@ -24,8 +24,6 @@ app.use(cookieSession({
 
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
 app.get('/', (req, res) => {
-  // API CALL HERE
-  // let url= 'http://quotes.stormconsultancy.co.uk/random.json'
 
   linkQuery.getRankings()
         .then(data => {

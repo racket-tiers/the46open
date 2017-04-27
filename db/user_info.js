@@ -42,7 +42,8 @@ function storeEmailAndPassword(obj) {
   })
 }
 
-
+// // API CALL HERE
+// let url= 'http://quotes.stormconsultancy.co.uk/random.json'
 
 
 module.exports = {
