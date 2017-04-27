@@ -13,15 +13,15 @@ const methodOverride = require('method-override')
 app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }))
 app.use(bodyParser.json())
 app.use(methodOverride('_method'))
 
 app.use(cookieSession({
-    name: 'session',
-    keys: [key],
-    maxAge: 24 * 60 * 60 * 1000
+  name: 'session',
+  keys: [key],
+  maxAge: 24 * 60 * 60 * 1000
 }))
 
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
@@ -29,98 +29,98 @@ app.get('/', (req, res) => {
     // API CALL HERE
     // let url= 'http://quotes.stormconsultancy.co.uk/random.json'
 
-    linkQuery.getRankings()
+  linkQuery.getRankings()
         .then(data => {
-            res.render('index', {
-                data
-            })
+          res.render('index', {
+            data
+          })
         })
 })
 
 app.get('/createAccount', (req, res) => {
-    res.render('createAccount')
+  res.render('createAccount')
 })
 
 app.get('/about', (req, res) => {
-    res.render('about')
+  res.render('about')
 })
 
 app.get('/rules', (req, res) => {
-    res.render('rules')
+  res.render('rules')
 })
 
 app.get('/profile/:id', (req, res) => {
-    linkQuery.seeIfUserExists().where({
-        id: req.params.id
-    }).first().then(function(data) {
-        res.render('profile', data)
-    })
+  linkQuery.seeIfUserExists().where({
+    id: req.params.id
+  }).first().then(function (data) {
+    res.render('profile', data)
+  })
 })
 
 // create profile
 app.post('/profilecreate', (req, res) => {
-    linkQuery.seeIfUserExists().where({
-            email: req.body.email
-        }).first()
-        .then(function(user) {
-            if (user) {
-                console.log('you already have an account')
-                res.render('createAccount')
-            } else {
-                bcrypt.hash(req.body.password, 10)
-                    .then(function(hash) {
-                        req.body.password = hash
-                        linkQuery.storeEmailAndPassword(req.body).then(function() {
-                            linkQuery.seeIfUserExists().where({
-                                email: req.body.email
-                            }).first().then(function(user) {
-                                res.redirect('/profile/' + user.id)
-                            })
+  linkQuery.seeIfUserExists().where({
+    email: req.body.email
+  }).first()
+        .then(function (user) {
+          if (user) {
+            console.log('you already have an account')
+            res.render('createAccount')
+          } else {
+            bcrypt.hash(req.body.password, 10)
+                    .then(function (hash) {
+                      req.body.password = hash
+                      linkQuery.storeEmailAndPassword(req.body).then(function () {
+                        linkQuery.seeIfUserExists().where({
+                          email: req.body.email
+                        }).first().then(function (user) {
+                          res.redirect('/profile/' + user.id)
                         })
+                      })
                     })
-            }
+          }
         })
 })
 
 // LOG IN TO ACCOUNT
 app.post('/profile', (req, res) => {
-    linkQuery.seeIfUserExists().where({
-            email: req.body.email
-        }).first()
-        .then(function(user) {
-            if (user) {
-                bcrypt.compare(req.body.password, user.password).then(function(data) {
-                    if (data) {
-                        req.session.id = user.id
-                        res.redirect('/profile/' + user.id)
-                    } else {
-                        res.send('incorrect password')
-                    }
-                })
-            } else {
-                res.send('invalid login')
-            }
+  linkQuery.seeIfUserExists().where({
+    email: req.body.email
+  }).first()
+        .then(function (user) {
+          if (user) {
+            bcrypt.compare(req.body.password, user.password).then(function (data) {
+              if (data) {
+                req.session.id = user.id
+                res.redirect('/profile/' + user.id)
+              } else {
+                res.send('incorrect password')
+              }
+            })
+          } else {
+            res.send('invalid login')
+          }
         })
 })
 
 // LOAD ACCOUNT SETTINGS
 app.get('/account/:id', (req, res) => {
-    linkQuery.seeIfUserExists().where({
-        id: req.params.id
-    }).first().then(function(data) {
-        res.render('account', data)
-    })
+  linkQuery.seeIfUserExists().where({
+    id: req.params.id
+  }).first().then(function (data) {
+    res.render('account', data)
+  })
 })
 
 // DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.delete('/remove/:id', (req, res) => {
-    pg('user_table')
+  pg('user_table')
         .where({
-            id: req.params.id
+          id: req.params.id
         })
         .del()
         .then((id) => {
-            res.redirect('/')
+          res.redirect('/')
         })
 })
 
@@ -128,77 +128,77 @@ app.delete('/remove/:id', (req, res) => {
 
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 app.put('/update/:id', (req, res) => {
-    pg('user_table')
+  pg('user_table')
         .update(req.body)
         .where({
-            id: req.params.id
+          id: req.params.id
         })
         .returning('id')
         .then((id) => {
-            res.redirect('/profile/' + id)
+          res.redirect('/profile/' + id)
         })
 })
 
 // Log new match results
 app.get('/logmatch/:id', (req, res) => {
-    linkQuery.seeIfUserExists().where({
-        id: req.params.id
-    })
-    linkQuery.getAllUsers()
-        .then(function(data) {
-            res.render('logmatch', {
-                data
-            })
+  linkQuery.seeIfUserExists().where({
+    id: req.params.id
+  })
+  linkQuery.getAllUsers()
+        .then(function (data) {
+          res.render('logmatch', {
+            data
+          })
         })
 })
 
 // storing match results
 app.post('/storematch', (req, res) => {
-    pg('match')
+  pg('match')
         .insert(req.body)
         .returning('id')
         .then((id) => {
-            res.redirect('/')
+          res.redirect('/')
         })
 })
 
 // CREATING HISTORY FOR USERs
 app.get('/history/:id', (req, res) => {
-    pg.from('user_table')
+  pg.from('user_table')
         .innerJoin('match', 'user_table.id', 'match.user_1')
         .select().where('user_1', req.params.id).orWhere('user_2', req.params.id)
-        .then(function(data) {
+        .then(function (data) {
             // LOOP HERE
-            pg('user_table').select('first_name').where('user_table.id', data[0].user_2)
-                .then(function(info) {
-                    data[0].opponentName = info[0].first_name
-                    console.log(data)
-                    res.render('history', {
-                        data: data
-                    })
+          pg('user_table').select('first_name').where('user_table.id', data[0].user_2)
+                .then(function (info) {
+                  data[0].opponentName = info[0].first_name
+                  console.log(data)
+                  res.render('history', {
+                    data: data
+                  })
                 })
         })
 })
 
-//Isololating old rating - work in progress)
+// Isololating old rating - work in progress)
 
-var rateObj1 = pg('user_table').select('rating').where('user_table.id', req.body.user_1).first().then(function(r1) {
-    console.log(r1)
-})
+// var rateObj1 = pg('user_table').select('rating').where('user_table.id', req.body.user_1).first().then(function(r1) {
+//     console.log(r1)
+// })
 // var rateObj2 = pg('user_table').select('rating').where('user_table.id', req.body.user_2).first().then(function(r2){
 //     console.log(r2)
 // })
 
-
-var rate1 = rateObj1.rating
-
-var score1 = req.body.user1_points
-var score2 = req.body.user2_points
+//
+// var rate1 = rateObj1.rating
+//
+// var score1 = req.body.user1_points
+// var score2 = req.body.user2_points
 
 // console.log(score1);
 // console.log(score2);
 
-console.log(rate1);
+
 
 ///////////END Isololating
 
@@ -209,6 +209,9 @@ console.log(rate1);
 
 
 
-app.listen(port, function() {
-    console.log('Listening on local host ' + port)
+// console.log(rate1);
+
+
+app.listen(port, function () {
+  console.log('Listening on local host ' + port)
 })
