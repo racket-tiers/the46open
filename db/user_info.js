@@ -3,6 +3,7 @@ const pg = require('./knex')
 function getRankings() {
   return pg('theOpen').select().from('user_table').orderBy('rating','desc')
 }
+
 function addUser(obj) {
   obj.rating = 1200
   console.log(obj);
@@ -16,6 +17,11 @@ function addUser(obj) {
 function seeIfUserExists() {
   return pg('user_table').select()
 }
+
+function getAllUsers() {
+  return pg('user_table').select('id' , 'first_name' , 'last_name');
+}
+
 function storeEmailAndPassword(obj) {
   console.log('got it!');
   console.log(obj);
@@ -43,5 +49,6 @@ module.exports = {
   getRankings,
   addUser,
   seeIfUserExists,
-  storeEmailAndPassword
+  storeEmailAndPassword,
+  getAllUsers
 }

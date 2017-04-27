@@ -133,6 +133,19 @@ app.put('/update/:id', (req, res) => {
     })
 })
 
+
+//Log new match results
+app.get('/logmatch/:id', (req, res) => {
+  linkQuery.seeIfUserExists().where({
+    id: req.params.id
+  })
+  linkQuery.getAllUsers()
+  .then(function (data) {
+    console.log(data);
+    res.render('logmatch' , {data})
+  })
+})
+
 // return pg('link').where('id', obj['id']).update('votes', +obj['votes'] + 1)
 
 app.listen(port, function () {
