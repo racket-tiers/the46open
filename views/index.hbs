@@ -46,10 +46,7 @@
 </header>
 
 <main>
-  <h1>Recent Matches</h1>
-  <h1 class="open">Top Matches</h1>
-  <h1 class="open">Top Players</h1>
-
+  <h1>Top Players</h1>
 
     {{#each data}}
         <div class='fake'>
@@ -59,11 +56,6 @@
             <span class="first_name">{{this.rating}} </span>&nbsp&nbsp
         </div>
     {{/each}}
-
-
-<button class="random-match-btn" id="matchBtn">Match Me!: Random</button>
-<div class="random-match"></div>
-
 
   </main>
 
@@ -93,10 +85,10 @@
     }
 // END MODAL HERE =============
 
-var buttonMatch = document.getElementById('matchBtn')
-buttonMatch.addEventListener('click', () => {
-  console.log('click')
-})
+// var buttonMatch = document.getElementById('matchBtn')
+// buttonMatch.addEventListener('click', () => {
+//   console.log('click')
+// })
     </script>
 
 

@@ -140,9 +140,9 @@ app.get('/logmatch/:id', (req, res) => {
   })
 })
 
-//storing match results
+// storing match results
 app.post('/storematch', (req, res) => {
-  console.log(req.body);
+  console.log(req.body)
   pg('match')
   .insert(req.body)
   .returning('id')
