@@ -128,8 +128,6 @@ app.put('/update/:id', (req, res) => {
     })
 })
 
-// return pg('link').where('id', obj['id']).update('votes', +obj['votes'] + 1)
-
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })
