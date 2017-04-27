@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/main.css">
+    <title>The46Open</title>
+</head>
+
+<body>
+    <header>
+
+        <section class="flex-container">
+            <div class="logoImg"><img src="/assets/46openlogo.png" alt=""></div>
+            <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+        </section>
+
+        <nav>
+            <a href="/">LOG OUT</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a>
+        </nav>
+    </header>
+    <main>
+
+        <div>
+            <h1>YOUR HISTORY:</h1>
+
+{{#each data}}
+        <h2 class="open-mini">Match Results:</h2>
+        <p>player 1: {{first_name}}</p>
+        <p>Player 1 points: {{user1_points}}</p>
+        <p>Player 2: {{opponentName}}</p>
+        <p>Player 2 points: {{user2_points}}</p>
+
+        {{/each}}
+
+
+
+    </main>
+</body>
+
+</html>

@@ -26,16 +26,18 @@
 
 
         <h2>Ready to play, {{first_name}} ?<h2>
-        <h3>CURRENT RATING: {{rating}}</h3>
-        <h3>YOUR CAMPUS: {{campus}}</h3>
-<form class="makeButton" action="/logmatch/{{id}}" method="get">
-  <button>Log Score</button>
+        <h2>CURRENT RATING: {{rating}}</h2>
+        <h2>YOUR CAMPUS: {{campus}}</h2>
 
+<form class="makeButton" action="/logmatch/{{id}}" method="get">
+  <button class="add-btn">Log Score</button>
 </form>
 
-    <h1>Recent Scores</h1>
 
 
+    <form class="makeButton open" action="/history/{{id}}" method="get">
+      <button class="add-btn">History</button>
+    </form>
 
 
   </main>

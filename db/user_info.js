@@ -6,7 +6,7 @@ function getRankings() {
 
 function addUser(obj) {
   obj.rating = 1200
-  console.log(obj);
+  // console.log(obj);
   return pg('user_table').insert(obj)
 }
 
@@ -23,8 +23,8 @@ function getAllUsers() {
 }
 
 function storeEmailAndPassword(obj) {
-  console.log('got it!');
-  console.log(obj);
+  // console.log('got it!');
+  // console.log(obj);
   return pg('user_table').insert({
     first_name: obj.first_name,
     last_name: obj.last_name,
