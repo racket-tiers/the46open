@@ -112,19 +112,14 @@ app.get('/account/:id', (req, res) => {
 })
 
 // DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
-app.delete('/remove', (req, res) => {
-  linkQuery.seeIfUserExists().where({
-    id: req.params.id
-  }).first().then(function (data) {
-    pg('user_table')
-  .where('id', data.id)
+app.delete('/remove/:id', (req, res) => {
+  pg('user_table')
+  .where({id: req.params.id})
   .del()
-  .then(() => {
-    res.redirect('/')
-  })
+  .then((id) =>{
+    res.redirect('/');
   })
 })
-
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 // app.put('/update', (req, res) => {
 //   pg('user_table')
