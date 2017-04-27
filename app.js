@@ -142,13 +142,24 @@ app.get('/logmatch/:id', (req, res) => {
 
 // storing match results
 app.post('/storematch', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   pg('match')
   .insert(req.body)
   .returning('id')
     .then((id) => {
       res.redirect('/')
     })
+})
+//CREATING HISTORY FOR USERs
+app.get('/history', (req, res) => {
+  // linkQuery.seeIfUserExists().where({
+  //   id: req.params.id })
+  pg('match').select()
+  // .orWhere({user_2: req.params.id})
+  .then(function (data) {
+    console.log(data);
+    res.render('history',{data})
+  })
 })
 
 app.listen(port, function () {
