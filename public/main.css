@@ -199,6 +199,12 @@ form button {
   margin-bottom: 20px;
 }
 
+.makeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .reportScore{
     border: solid black 1px
