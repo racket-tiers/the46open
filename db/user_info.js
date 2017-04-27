@@ -42,6 +42,10 @@ function storeEmailAndPassword(obj) {
   })
 }
 
+function oldRank(){
+    return pg('user_table').select('rating').from('user_table').where('id', id);
+
+}
 
 
 
@@ -50,5 +54,6 @@ module.exports = {
   addUser,
   seeIfUserExists,
   storeEmailAndPassword,
-  getAllUsers
+  getAllUsers,
+
 }

@@ -142,7 +142,29 @@ app.get('/logmatch/:id', (req, res) => {
 
 // storing match results
 app.post('/storematch', (req, res) => {
-  console.log(req.body)
+  // (req.body.user_1)
+
+  var rateObj1 = pg('user_table').select('rating').where('user_table.id', req.body.user_1).first().then(function(r1){
+      console.log(r1)
+  })
+  // var rateObj2 = pg('user_table').select('rating').where('user_table.id', req.body.user_2).first().then(function(r2){
+  //     console.log(r2)
+  // })
+
+
+var rate1 = rateObj1.rating
+
+var score1 = req.body.user1_points
+var score2 = req.body.user2_points
+
+// console.log(score1);
+// console.log(score2);
+
+console.log(rate1);
+
+
+
+
   pg('match')
   .insert(req.body)
   .returning('id')
