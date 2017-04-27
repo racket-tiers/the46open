@@ -158,9 +158,9 @@ app.post('/storematch', (req, res) => {
 app.get('/history/:id', (req, res) => {
   pg.from('user_table')
     .innerJoin('match', 'user_table.id', 'match.user_1')
-    .select().where('user_1', req.params.id)
-    // .andWhere('user_2', req.params.id)
+    .select().where('user_1', req.params.id).orWhere('user_2', req.params.id)
   .then(function (data) {
+    // LOOP HERE
     pg('user_table').select('first_name').where('user_table.id', data[0].user_2)
     .then(function (info) {
       data[0].opponentName = info[0].first_name
