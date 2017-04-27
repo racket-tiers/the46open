@@ -112,15 +112,20 @@ app.get('/account/:id', (req, res) => {
 })
 
 // DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
-app.delete('/remove', (req, res) => {
-  pg('user_table')
-  // TODO: COOKIE STUFF HERE
-  .where('id', 400)
-  .del()
-  .then(() => {
-    res.redirect('/')
-  })
-})
+// app.delete('/remove', (req, res) => {
+//   linkQuery.seeIfUserExists().where({
+//     id: req.params.id
+//   }).first().then(function (data) {
+//
+//   ///////////////////////////////////
+//   pg('user_table')
+//   // TODO: COOKIE STUFF HERE
+//   .where('id', 400)
+//   .del()
+//   .then(() => {
+//     res.redirect('/')
+//   })
+// })
 
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
 // app.put('/update', (req, res) => {
