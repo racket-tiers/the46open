@@ -200,6 +200,14 @@ var score2 = req.body.user2_points
 
 console.log(rate1);
 
+///////////END Isololating
+
+
+
+
+
+
+
 
 app.listen(port, function() {
     console.log('Listening on local host ' + port)
