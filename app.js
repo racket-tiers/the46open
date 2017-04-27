@@ -46,8 +46,6 @@ app.get('/profile/:id', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.params.id
   }).first().then(function (data) {
-    console.log('pop this data:')
-    console.log(data)
     res.render('profile', data)
   })
 })
@@ -65,8 +63,6 @@ app.post('/profilecreate', (req, res) => {
       bcrypt.hash(req.body.password, 10)
       .then(function (hash) {
         req.body.password = hash
-        console.log('req body:')
-        console.log(req.body)
         linkQuery.storeEmailAndPassword(req.body).then(function () {
           linkQuery.seeIfUserExists().where({
             email: req.body.email
@@ -87,7 +83,6 @@ app.post('/profile', (req, res) => {
   }).first()
   .then(function (user) {
     if (user) {
-      console.log('found one')
       bcrypt.compare(req.body.password, user.password).then(function (data) {
         if (data) {
           req.session.id = user.id
@@ -116,20 +111,24 @@ app.delete('/remove/:id', (req, res) => {
   pg('user_table')
   .where({id: req.params.id})
   .del()
-  .then((id) =>{
-    res.redirect('/');
+  .then((id) => {
+    console.log('user was deleted')
+    res.redirect('/')
   })
 })
+
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
-// app.put('/update', (req, res) => {
-//   pg('user_table')
-//   .where('id', 400)
-//   TODO Cookie Stuff
-//   .()
-//   .then(() => {
-//     res.redirect('/profile/' + cookie stuff)
-//   })
-// })
+app.put('/update/:id', (req, res) => {
+  pg('user_table')
+  .update(req.body)
+  .where({id: req.params.id})
+  .returning('id')
+    .then((id) => {
+      res.redirect('/profile/' + id)
+    })
+})
+
+// return pg('link').where('id', obj['id']).update('votes', +obj['votes'] + 1)
 
 app.listen(port, function () {
   console.log('Listening on local host ' + port)

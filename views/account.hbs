@@ -22,7 +22,7 @@
 
 <h1>Updates {{first_name}}?</h1>
 
-    <form class="create-account" method="post" action="/update?_method=PUT">
+    <form class="create-account" method="post" action="/update/{{id}}?_method=PUT">
       <label for="first_name">Email:</label><br>
         <input type="email" name="email" value="{{email}}"><br>
         <!-- TODO ADD AVATAR -->
@@ -38,13 +38,13 @@
         <label for="cohort">Cohort:</label><br>
         <input type="text" name="cohort" value="{{cohort}}"><br>
         <label for="phoneNum">Phone Number:</label><br>
-        <input type="text" name="phoneNum" value="{{phone_number}}"> <br>
+        <input type="text" name="phone_number" value="{{phone_number}}"> <br>
         <label for="isActive">Are you an active Player?:</label><br>
-        <input type="text" name="isActive" value="{{is_active}}"> <br>
+        <input type="text" name="is_active" value="{{is_active}}"> <br>
         <label for="description">What do you do at Galvanize? Tell us about you:</label><br>
         <input type="text" name="description" value="{{description}}"> <br>
         <label for="ranked">Do you want to play as a ranked player?:</label><br>
-        <input type="text" name="ranked" value="{{is_ranked}}"> <br>
+        <input type="text" name="is_ranked" value="{{is_ranked}}"> <br>
         <label for="ranked">* Being ranked will allow you to have competitive matches, and level up</label><br>
         <!-- TODO  udpate password change option -->
         <!-- <input type="text" name="password" value=""> {{avatar_url}} -->
