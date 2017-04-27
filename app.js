@@ -200,7 +200,19 @@ app.get('/history/:id', (req, res) => {
 // console.log(score1);
 // console.log(score2);
 
+
+
+///////////END Isololating
+
+
+
+
+
+
+
+
 // console.log(rate1);
+
 
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
