@@ -165,19 +165,21 @@ app.post('/storematch', (req, res) => {
 // CREATING HISTORY FOR USERs
 app.get('/history/:id', (req, res) => {
   pg.from('user_table')
-        .innerJoin('match', 'user_table.id', 'match.user_1')
-        .select().where('user_1', req.params.id).orWhere('user_2', req.params.id)
-        .then(function (data) {
-            // LOOP HERE
-          pg('user_table').select('first_name').where('user_table.id', data[0].user_2)
-                .then(function (info) {
-                  data[0].opponentName = info[0].first_name
-                  console.log(data)
-                  res.render('history', {
-                    data: data
-                  })
-                })
-        })
+    .innerJoin('match', 'user_table.id', 'match.user_1')
+    .select().where('user_1', req.params.id).orWhere('user_2', req.params.id)
+    .then(function (data) {
+      const pushOppArray = []
+      for (let i = 0; i < data.length; i++) {
+        pushOppArray.push(pg('user_table').select('first_name').where('user_table.id', data[i].user_2).first())
+      }
+      Promise.all(pushOppArray).then(values => {
+        for (var i = 0; i < values.length; i++) {
+          data[i].oppName = values[i].first_name
+        }
+        console.log(data)
+        res.render('history', {data: data})
+      })
+    })
 })
 
 // Isololating old rating - work in progress)
