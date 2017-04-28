@@ -3,7 +3,7 @@
 - Download & npm install for dependencies.
 - [Youtube walk through](https://youtu.be/Qq73UuLg8GU)
 
-
+## CONTRIBUTORS
 - James Schultz
 - Jackson Donovan
 - Jules Perryman
