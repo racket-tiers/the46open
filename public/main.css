@@ -109,6 +109,10 @@ main h2 {
   margin-top: 50px;
 }
 
+.open-mini-mini {
+  margin-top: 15px;
+}
+
 .headrow {
   width: 100%;
   flex-direction: row;
