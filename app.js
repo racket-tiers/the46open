@@ -159,9 +159,8 @@ app.get('/logmatch/:id', (req, res) => {
 app.post('/storematch/:id', (req, res) => {
   pg('match')
         .insert(req.body)
-        .returning('id')
-        .then((id) => {
-          res.redirect('/profile/' + id)
+        .then(() => {
+          res.redirect('/profile/' + req.session.id)
         })
 })
 
