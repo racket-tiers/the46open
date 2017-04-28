@@ -68,6 +68,7 @@ nav a {
     padding-left: 15px;
     font-size: 18px;
     margin: 0;
+    text-decoration: none;
     /*border-top: 1px solid black;
     border-right: 1px solid black;*/
 }
@@ -150,6 +151,18 @@ form button {
   margin-right: 25%;
 }
 
+.reportScore{
+    border: solid black 1px
+}
+
+.log-in-class {
+  margin-left: 30%;
+  background-color: #03a9f4;
+}
+
+
+
+
 
 
 /*============================= MODAL*/
@@ -211,9 +224,4 @@ form button {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-
-.reportScore{
-    border: solid black 1px
 }
