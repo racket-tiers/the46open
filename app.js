@@ -26,12 +26,6 @@ app.use(cookieSession({
 
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
 app.get('/', (req, res) => {
-<<<<<<< HEAD
-=======
-    // API CALL HERE
-    // let url= 'http://quotes.stormconsultancy.co.uk/random.json'
->>>>>>> 5bff287b7a424295216203aea1d77a26258dd9c0
-
   linkQuery.getRankings()
         .then(data => {
           res.render('index', {
