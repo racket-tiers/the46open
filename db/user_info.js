@@ -42,8 +42,13 @@ function storeEmailAndPassword(obj) {
   })
 }
 
-// // API CALL HERE
-// let url= 'http://quotes.stormconsultancy.co.uk/random.json'
+
+function oldRank(){
+    return pg('user_table').select('rating').from('user_table').where('id', id);
+
+}
+
+
 
 
 module.exports = {
@@ -51,5 +56,6 @@ module.exports = {
   addUser,
   seeIfUserExists,
   storeEmailAndPassword,
-  getAllUsers
+  getAllUsers,
+
 }
