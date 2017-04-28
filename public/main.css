@@ -43,6 +43,14 @@ h1 {
     align-content: stretch;
 }
 
+.text-cen {
+  text-align: center;
+}
+
+.openend {
+  padding-bottom: 35px;
+}
+
 /* ============= HEADER*/
 header {
   background-color: white;
