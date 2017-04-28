@@ -156,12 +156,12 @@ app.get('/logmatch/:id', (req, res) => {
 })
 
 // storing match results
-app.post('/storematch', (req, res) => {
+app.post('/storematch/:id', (req, res) => {
   pg('match')
         .insert(req.body)
         .returning('id')
         .then((id) => {
-          res.redirect('/')
+          res.redirect('/profile/' + id)
         })
 })
 
