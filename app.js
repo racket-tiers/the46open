@@ -48,7 +48,15 @@ app.get('/about', (req, res) => {
   res.render('about')
 })
 
+app.get('/about/:id', (req, res) => {
+  res.render('about')
+})
+
 app.get('/rules', (req, res) => {
+  res.render('rules')
+})
+
+app.get('/rules/:id', (req, res) => {
   res.render('rules')
 })
 
@@ -111,7 +119,7 @@ app.get('/account/:id', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.params.id
   }).first().then(function (data) {
-    res.render('account', data)
+    res.render('account', {data: data, currentId: req.params.id})
   })
 })
 
@@ -149,9 +157,7 @@ app.get('/logmatch/:id', (req, res) => {
   })
   linkQuery.getAllUsers()
         .then(function (data) {
-          res.render('logmatch', {
-            data
-          })
+          res.render('logmatch', {data: data, currentId: req.params.id})
         })
 })
 
@@ -179,8 +185,8 @@ app.get('/history/:id', (req, res) => {
         for (var i = 0; i < values.length; i++) {
           data[i].oppName = values[i].first_name
         }
-        console.log(data)
-        res.render('history', {data: data})
+        // console.log(data)
+        res.render('history', {data: data, currentId: req.params.id})
       })
     })
 })
@@ -203,19 +209,9 @@ app.get('/history/:id', (req, res) => {
 // console.log(score1);
 // console.log(score2);
 
-
-
-///////////END Isololating
-
-
-
-
-
-
-
+// /////////END Isololating
 
 // console.log(rate1);
-
 
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
