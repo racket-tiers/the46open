@@ -151,7 +151,18 @@ app.get('/logmatch/:id', (req, res) => {
   })
   linkQuery.getAllUsers()
         .then(function (data) {
-          res.render('logmatch', {data: data, currentId: req.params.id})
+          let currentUserName = ''
+          let i = -1
+          for (i = 0; i < data.length; i++) {
+            const person = data[i]
+            if (person.id === +req.params.id) {
+              currentUserName = person.first_name + ' ' + person.last_name
+              break
+            }
+          }
+          data.splice(i, 1)
+          // removes index i, current user, from data
+          res.render('logmatch', {data: data, currentId: req.params.id, currentUser: currentUserName})
         })
 })
 
