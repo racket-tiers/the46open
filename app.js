@@ -156,7 +156,9 @@ app.get('/logmatch/:id', (req, res) => {
           for (i = 0; i < data.length; i++) {
             const person = data[i]
             if (person.id === +req.params.id) {
-              currentUserName = person.first_name + ' ' + person.last_name
+              currentUserName = `Current User: ${person.first_name} ${person.last_name}`
+              // ES 6 feature for concat. same as :
+              // currentUserName = person.first_name + ' ' + person.last_name
               break
             }
           }
