@@ -9,6 +9,10 @@ const cookieSession = require('cookie-session')
 const key = process.env.COOKIE_KEY || 'asdfasdf'
 const linkQuery = require('./db/user_info')
 const methodOverride = require('method-override')
+const hbs = require('hbs')
+const path = require('path')
+
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
 
 app.use('/', express.static('public'))
 app.set('view engine', 'hbs')
@@ -28,7 +32,7 @@ app.use(cookieSession({
 const securedRoutes = ['/profile', '/account', '/remove', '/update', '/logmatch', '/storematch', '/history']
 app.use((req, res, next) => {
   if (securedRoutes.includes(req.url)) {
-    if (!req.session || !req.session.id) {
+    if (!isLoggedIn(req)) {
       res.redirect('/')
       return
     }
@@ -36,31 +40,40 @@ app.use((req, res, next) => {
   next()
 })
 
+const isLoggedIn = (req) => {
+  if (!req.session || !req.session.id) {
+    return false
+  } else {
+    return true
+  }
+}
+
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
 app.get('/', (req, res) => {
   linkQuery.getRankings()
         .then(data => {
-          res.render('index', {data})
+          console.log(req.sesssion)
+          res.render('index', {data, active: isLoggedIn(req)})
         })
 })
 
 app.get('/createAccount', (req, res) => {
-  res.render('createAccount')
+  res.render('createAccount', {active: isLoggedIn(req)})
 })
 
 app.get('/about', (req, res) => {
-  res.render('about')
+  res.render('about', {active: isLoggedIn(req)})
 })
 
 app.get('/rules', (req, res) => {
-  res.render('rules')
+  res.render('rules', {active: isLoggedIn(req)})
 })
 
 app.get('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.session.id
   }).first().then(function (data) {
-    res.render('profile', data)
+    res.render('profile', {data, active: isLoggedIn(req)})
   })
 })
 
@@ -71,7 +84,7 @@ app.post('/profilecreate', (req, res) => {
   }).first()
         .then(function (user) {
           if (user) {
-            res.render('createAccount')
+            res.redirect('/')
           } else {
             bcrypt.hash(req.body.password, 10)
                     .then(function (hash) {
@@ -80,7 +93,7 @@ app.post('/profilecreate', (req, res) => {
                         linkQuery.seeIfUserExists().where({
                           email: req.body.email
                         }).first().then(function (user) {
-                          res.redirect('/profile')
+                          res.redirect('/')
                         })
                       })
                     })
@@ -114,7 +127,7 @@ app.get('/account', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.session.id
   }).first().then(function (data) {
-    res.render('account', {data: data, currentId: req.session.id})
+    res.render('account', {data: data, currentId: req.session.id, active: isLoggedIn(req)})
   })
 })
 
@@ -162,7 +175,7 @@ app.get('/logmatch', (req, res) => {
           }
           data.splice(i, 1)
           // removes index i, current user, from data
-          res.render('logmatch', {data: data, currentId: req.session.id, currentUser: currentUserName})
+          res.render('logmatch', {data: data, currentId: req.session.id, currentUser: currentUserName, active: isLoggedIn(req)})
         })
 })
 
@@ -190,7 +203,7 @@ app.get('/history', (req, res) => {
         for (var i = 0; i < values.length; i++) {
           data[i].oppName = values[i].first_name
         }
-        res.render('history', {data: data, currentId: req.session.id})
+        res.render('history', {data: data, currentId: req.session.id, active: isLoggedIn(req)})
       })
     })
 })

@@ -7,45 +7,11 @@
         <title>The46Open</title>
     </head>
     <body>
-<header>
 
-  <section class="flex-container">
-    <div class="logoImg"><img src="assets/46openlogo.png" alt=""></div>
-    <h1>GALVANIZE'S PREMIER PONG TRACKER</H1>
-    </section>
-    <!-- ADD THOUGHT MODAL MENU JS VERSION  -->
-    <div class="btn-indent form-center">
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="add-btn">LOG IN NOW</button>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form action="/login" method="post">
-          <div class="popTitles">
-          <div class="form-center">
-            <h3 class="popTitles">LOG IN TO YOUR ACCOUNT:</h3>
-              <label for="title">USERNAME:</label>
-             <input type="text" name="email" value="" size="30" placeholder="email">
-             <label for="url">PASSWORD:</label>
-             <input type="password" name="password" size="30" value="" placeholder="password">
-             <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="Log in">
-             <a href="/createAccount">OR, CREATE AN ACCOUNT.</a>
-             </div>
-             </div>
-           </form>
-      </div>
-    </div>
-    </div>
-    <!-- =====================END MODAL -->
-
-  <nav>
-    <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a>
-  </nav>
-</header>
+ {{> header}}
 
 <main>
+
   <h1>Top Players</h1>
 
     {{#each data}}
