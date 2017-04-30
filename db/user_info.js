@@ -38,6 +38,7 @@ function storeEmailAndPassword (obj) {
   })
 }
 
+// COMPUTE NEW RATINGS, CALLED IN UPDATE RATINGS FUNCTION
 function computeNewRatings (matchResults, originalRatings) {
   if (+matchResults.user1_points > +matchResults.user2_points) {
     matchResults.winner = matchResults.user_1

@@ -201,28 +201,6 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-// Isololating old rating - work in progress
-
-// var rateObj1 = pg('user_table').select('rating').where('user_table.id', req.body.user_1).first().then(function(r1) {
-//     console.log(r1)
-// })
-// var rateObj2 = pg('user_table').select('rating').where('user_table.id', req.body.user_2).first().then(function(r2){
-//     console.log(r2)
-// })
-
-//
-// var rate1 = rateObj1.rating
-//
-// var score1 = req.body.user1_points
-// var score2 = req.body.user2_points
-
-// console.log(score1);
-// console.log(score2);
-
-// /////////END Isololating
-
-// console.log(rate1);
-
 app.listen(port, function () {
   console.log('Listening on local host ' + port)
 })
