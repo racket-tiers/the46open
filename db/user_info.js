@@ -1,28 +1,24 @@
 const pg = require('./knex')
 
-function getRankings() {
-  return pg('theOpen').select().from('user_table').orderBy('rating','desc')
+function getRankings () {
+  return pg('theOpen').select().from('user_table').orderBy('rating', 'desc')
 }
 
-function addUser(obj) {
+function addUser (obj) {
   obj.rating = 1200
   // console.log(obj);
   return pg('user_table').insert(obj)
 }
 
-
-
-
-
-function seeIfUserExists() {
+function seeIfUserExists () {
   return pg('user_table').select()
 }
 
-function getAllUsers() {
-  return pg('user_table').select('id' , 'first_name' , 'last_name');
+function getAllUsers () {
+  return pg('user_table').select('id', 'first_name', 'last_name')
 }
 
-function storeEmailAndPassword(obj) {
+function storeEmailAndPassword (obj) {
   // console.log('got it!');
   // console.log(obj);
   return pg('user_table').insert({
@@ -42,14 +38,36 @@ function storeEmailAndPassword(obj) {
   })
 }
 
-
-function oldRank(){
-    return pg('user_table').select('rating').from('user_table').where('id', id);
-
+// COMPUTE NEW RATINGS, CALLED IN UPDATE RATINGS FUNCTION
+function computeNewRatings (matchResults, originalRatings) {
+  if (+matchResults.user1_points > +matchResults.user2_points) {
+    matchResults.winner = matchResults.user_1
+  } else {
+    matchResults.winner = matchResults.user_2
+  }
+  for (let i = 0; i < originalRatings.length; i++) {
+    // ENTER THE JACKSON DONOVAN RATING SYSTEM HERE ***
+    if (originalRatings[i].id === +matchResults.winner) {
+      originalRatings[i].rating += 10
+    } else {
+      originalRatings[i].rating -= 10
+    }
+  }
+  return originalRatings
 }
 
-
-
+// UPDATES RATINGS BASED ON MATCH RESULTS. RUNS WHEN MATCH IS STORED
+function updateRatings (body) {
+  pg('user_table').select('id', 'rating').where('id', body.user_1).orWhere('id', body.user_2)
+  .then((originalRatings) => {
+    const newRatings = computeNewRatings(body, originalRatings)
+    Promise.all([
+      pg('user_table').update({rating: newRatings[0].rating}).where({id: newRatings[0].id}),
+      pg('user_table').update({rating: newRatings[1].rating}).where({id: newRatings[1].id})
+    ]).then(() => {
+    })
+  })
+}
 
 module.exports = {
   getRankings,
@@ -57,5 +75,6 @@ module.exports = {
   seeIfUserExists,
   storeEmailAndPassword,
   getAllUsers,
+  updateRatings
 
 }

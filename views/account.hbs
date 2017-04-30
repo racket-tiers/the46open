@@ -11,18 +11,18 @@
 
   <section class="flex-container">
     <div class="logoImg"><img src="/assets/46openlogo.png" alt=""></div>
-    <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+    <h1>GALVANIZE'S PREMIER PONG TRACKER</H1>
     </section>
 
   <nav>
-  <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile/{{currentId}}" class="log-in-class"> PROFILE </a>
+  <a href="/">HOME</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile" class="log-in-class"> PROFILE </a>
   </nav>
 </header>
 <main>
 
 <h1>Updates {{data.first_name}}?</h1>
 
-    <form class="create-account" method="post" action="/update/{{currentId}}?_method=PUT">
+    <form class="create-account" method="post" action="/update?_method=PUT">
       <label for="first_name">Email:</label><br>
         <input type="email" name="email" value="{{data.email}}"><br>
         <!-- TODO ADD AVATAR -->
@@ -50,7 +50,7 @@
         <button>Update Account Settings</button>
     </form>
 
-    <form method="POST" action="/remove/{{currentId}}?_method=DELETE">
+    <form method="POST" action="/remove?_method=DELETE">
       <button type="submit">Delete Account</button>
     </form>
 

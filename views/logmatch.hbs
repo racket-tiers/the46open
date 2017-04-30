@@ -14,11 +14,11 @@
 
         <section class="flex-container">
             <div class="logoImg"><img src="/assets/46openlogo.png" alt=""></div>
-            <h1>GALVANZIE'S PREMIER PONG TRACKER</H1>
+            <h1>GALVANIZE'S PREMIER PONG TRACKER</H1>
         </section>
 
         <nav>
-            <a href="/">LOG OUT</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile/{{currentId}}" class="log-in-class"> PROFILE </a>
+            <a href="/">LOG OUT</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/profile" class="log-in-class"> PROFILE </a>
         </nav>
     </header>
     <main>
@@ -26,14 +26,9 @@
         <div class="reportScore">
             <h1>Report Match Scores:</h1>
 
-            <form method="post" action="/storematch/{{currentId}}">
+            <form method="post" action="/storematch">
                 <div>
-                    <label for="your_name">Select Yourself</label>
-                    <select name="user_1">
-              {{#each data}}
-                <option name="user_1" value="{{this.id}}">{{this.first_name}}&nbsp{{this.last_name}}</option>
-                {{/each}}
-            </select>
+                  <h3><input type="hidden" name="user_1" value="{{currentId}}">{{currentUser}}</h3>
                 </div>
                 <div class="input">
                     <label for="myScore">My Score: </label>
