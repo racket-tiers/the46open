@@ -168,6 +168,7 @@ app.get('/logmatch', (req, res) => {
 
 // storing match results
 app.post('/storematch', (req, res) => {
+  linkQuery.updateRatings(req.body)
   pg('match')
         .insert(req.body)
         .then(() => {
@@ -200,7 +201,7 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-// Isololating old rating - work in progress)
+// Isololating old rating - work in progress
 
 // var rateObj1 = pg('user_table').select('rating').where('user_table.id', req.body.user_1).first().then(function(r1) {
 //     console.log(r1)
