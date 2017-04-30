@@ -24,13 +24,23 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000
 }))
 
+// SECURE ROUTES
+const securedRoutes = ['/profile', '/account', '/remove', '/update', '/logmatch', '/storematch', '/history']
+app.use((req, res, next) => {
+  if (securedRoutes.includes(req.url)) {
+    if (!req.session || !req.session.id) {
+      res.redirect('/')
+      return
+    }
+  }
+  next()
+})
+
 // GENERATES THE LEADERBOAD ON THE MAIN PAGE
 app.get('/', (req, res) => {
   linkQuery.getRankings()
         .then(data => {
-          res.render('index', {
-            data
-          })
+          res.render('index', {data})
         })
 })
 
@@ -42,21 +52,13 @@ app.get('/about', (req, res) => {
   res.render('about')
 })
 
-app.get('/about/:id', (req, res) => {
-  res.render('about')
-})
-
 app.get('/rules', (req, res) => {
   res.render('rules')
 })
 
-app.get('/rules/:id', (req, res) => {
-  res.render('rules')
-})
-
-app.get('/profile/:id', (req, res) => {
+app.get('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
-    id: req.params.id
+    id: req.session.id
   }).first().then(function (data) {
     res.render('profile', data)
   })
@@ -69,7 +71,6 @@ app.post('/profilecreate', (req, res) => {
   }).first()
         .then(function (user) {
           if (user) {
-            console.log('you already have an account')
             res.render('createAccount')
           } else {
             bcrypt.hash(req.body.password, 10)
@@ -79,7 +80,7 @@ app.post('/profilecreate', (req, res) => {
                         linkQuery.seeIfUserExists().where({
                           email: req.body.email
                         }).first().then(function (user) {
-                          res.redirect('/profile/' + user.id)
+                          res.redirect('/profile')
                         })
                       })
                     })
@@ -88,7 +89,7 @@ app.post('/profilecreate', (req, res) => {
 })
 
 // LOG IN TO ACCOUNT
-app.post('/profile', (req, res) => {
+app.post('/login', (req, res) => {
   linkQuery.seeIfUserExists().where({
     email: req.body.email
   }).first()
@@ -97,7 +98,7 @@ app.post('/profile', (req, res) => {
             bcrypt.compare(req.body.password, user.password).then(function (data) {
               if (data) {
                 req.session.id = user.id
-                res.redirect('/profile/' + user.id)
+                res.redirect('/profile')
               } else {
                 res.send('incorrect password')
               }
@@ -109,19 +110,19 @@ app.post('/profile', (req, res) => {
 })
 
 // LOAD ACCOUNT SETTINGS
-app.get('/account/:id', (req, res) => {
+app.get('/account', (req, res) => {
   linkQuery.seeIfUserExists().where({
-    id: req.params.id
+    id: req.session.id
   }).first().then(function (data) {
-    res.render('account', {data: data, currentId: req.params.id})
+    res.render('account', {data: data, currentId: req.session.id})
   })
 })
 
 // DELETE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
-app.delete('/remove/:id', (req, res) => {
+app.delete('/remove', (req, res) => {
   pg('user_table')
         .where({
-          id: req.params.id
+          id: req.session.id
         })
         .del()
         .then((id) => {
@@ -129,25 +130,22 @@ app.delete('/remove/:id', (req, res) => {
         })
 })
 
-// Find Available Users
-
 // UPDATE ACCOUNT, FROM ACCOUNT SETTINGS PAGE
-app.put('/update/:id', (req, res) => {
+app.put('/update', (req, res) => {
   pg('user_table')
         .update(req.body)
         .where({
-          id: req.params.id
+          id: req.session.id
         })
-        .returning('id')
-        .then((id) => {
-          res.redirect('/profile/' + id)
+        .then(() => {
+          res.redirect('/profile')
         })
 })
 
 // Log new match results
-app.get('/logmatch/:id', (req, res) => {
+app.get('/logmatch', (req, res) => {
   linkQuery.seeIfUserExists().where({
-    id: req.params.id
+    id: req.session.id
   })
   linkQuery.getAllUsers()
         .then(function (data) {
@@ -155,7 +153,7 @@ app.get('/logmatch/:id', (req, res) => {
           let i = -1
           for (i = 0; i < data.length; i++) {
             const person = data[i]
-            if (person.id === +req.params.id) {
+            if (person.id === req.session.id) {
               currentUserName = `Current User: ${person.first_name} ${person.last_name}`
               // ES 6 feature for concat. same as :
               // currentUserName = person.first_name + ' ' + person.last_name
@@ -164,24 +162,24 @@ app.get('/logmatch/:id', (req, res) => {
           }
           data.splice(i, 1)
           // removes index i, current user, from data
-          res.render('logmatch', {data: data, currentId: req.params.id, currentUser: currentUserName})
+          res.render('logmatch', {data: data, currentId: req.session.id, currentUser: currentUserName})
         })
 })
 
 // storing match results
-app.post('/storematch/:id', (req, res) => {
+app.post('/storematch', (req, res) => {
   pg('match')
         .insert(req.body)
         .then(() => {
-          res.redirect('/profile/' + req.session.id)
+          res.redirect('/profile')
         })
 })
 
 // CREATING HISTORY FOR USERs
-app.get('/history/:id', (req, res) => {
+app.get('/history', (req, res) => {
   pg.from('user_table')
     .innerJoin('match', 'user_table.id', 'match.user_1')
-    .select().where('user_1', req.params.id).orWhere('user_2', req.params.id)
+    .select().where('user_1', req.session.id).orWhere('user_2', req.session.id)
     .then(function (data) {
       const pushOppArray = []
       for (let i = 0; i < data.length; i++) {
@@ -191,10 +189,15 @@ app.get('/history/:id', (req, res) => {
         for (var i = 0; i < values.length; i++) {
           data[i].oppName = values[i].first_name
         }
-        // console.log(data)
-        res.render('history', {data: data, currentId: req.params.id})
+        res.render('history', {data: data, currentId: req.session.id})
       })
     })
+})
+
+  // ADD LOGOUT
+app.get('/logout', (req, res) => {
+  req.session = null
+  res.redirect('/')
 })
 
 // Isololating old rating - work in progress)

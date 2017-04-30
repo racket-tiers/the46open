@@ -18,7 +18,7 @@
         </section>
 
         <nav>
-            <a href="/">LOG OUT</a><a href="/about/{{id}}">ABOUT US</a><a href="/rules/{{id}}"> RULES </a><a href="/account/{{id}}" class="log-in-class"> ACCOUNT SETTINGS </a>
+            <a href="/">Home</a><a href="/about">ABOUT US</a><a href="/rules"> RULES </a><a href="/account" class="log-in-class"> ACCOUNT SETTINGS </a><a href="/logout">LOG OUT</a>
         </nav>
     </header>
     <main>
@@ -29,13 +29,13 @@
         <h2>CURRENT RATING: {{rating}}</h2>
         <h2>YOUR CAMPUS: {{campus}}</h2>
 
-<form class="makeButton" action="/logmatch/{{id}}" method="get">
+<form class="makeButton" action="/logmatch" method="get">
   <button class="add-btn">Log Score</button>
 </form>
 
 
 
-    <form class="makeButton open" action="/history/{{id}}" method="get">
+    <form class="makeButton open" action="/history" method="get">
       <button class="add-btn">History</button>
     </form>
 
