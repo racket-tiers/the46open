@@ -58,8 +58,13 @@ function computeNewRatings (matchResults, originalRatings) {
 
 // UPDATES RATINGS BASED ON MATCH RESULTS. RUNS WHEN MATCH IS STORED
 function updateRatings (body) {
-  pg('user_table').select('id', 'rating').where('id', body.user_1).orWhere('id', body.user_2)
+  pg('user_table').select('id', 'rating', 'is_ranked').where('id', body.user_1).orWhere('id', body.user_2)
   .then((originalRatings) => {
+    if (originalRatings.some((ranked) => { return !ranked.is_ranked })) {
+      // Checks to see if both players are enrolled in rank play
+      console.log('not a ranked match')
+      return
+    }
     const newRatings = computeNewRatings(body, originalRatings)
     Promise.all([
       pg('user_table').update({rating: newRatings[0].rating}).where({id: newRatings[0].id}),
