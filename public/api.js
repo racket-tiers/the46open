@@ -1,5 +1,5 @@
 const req = new XMLHttpRequest()
-const url = 'http://quotes.stormconsultancy.co.uk/random.json'
+const url = 'https://galvanize-cors.herokuapp.com/http://quotes.stormconsultancy.co.uk/random.json'
 req.open('GET', url)
 req.onload = () => {
   var apiObj = JSON.parse(req.responseText)
