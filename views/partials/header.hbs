@@ -1,49 +1,50 @@
 <header>
   <section class="flex-container">
     <img src="assets/46openlogo.png" alt="" class="logoImg">
-
-    <!-- modal -->
-    {{#unless active}}
     <section class ="midNav">
-      <div class="btn-indent form-center">
-        <button id="myBtn" class="add-btn">LOG IN NOW</button>
-        <div id="myModal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <form action="/login" method="post">
-              <div class="popTitles">
-                <div class="form-center">
-                  <h3 class="popTitles">LOG IN TO YOUR ACCOUNT:</h3>
-                  <label for="title">USERNAME:</label>
-                  <input type="text" name="email" value="" size="30" placeholder="email">
-                  <label for="url">PASSWORD:</label>
-                  <input type="password" name="password" size="30" value="" placeholder="password">
-                    <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="Log in">
-                    <a href="/createAccount">OR, CREATE AN ACCOUNT.</a>
-                </div>
+      <h1 class="tagLine">GALVANIZE'S PREMIER <br> PONG TRACKER</h1>
+        <!-- modal -->
+        {{#unless active}}
+          <div class="btn-indent form-center">
+            <button id="myBtn" class="add-btn">LOG IN NOW</button>
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="/login" method="post">
+                  <div class="popTitles">
+                    <div class="form-center">
+                      <h3 class="popTitles">LOG IN TO YOUR ACCOUNT:</h3>
+                      <label for="title">USERNAME:</label>
+                      <input type="text" name="email" value="" size="30" placeholder="email">
+                      <label for="url">PASSWORD:</label>
+                      <input type="password" name="password" size="30" value="" placeholder="password">
+                        <input type="submit" id="submit" data-inline="true" class="add-btn-two" value="Log in">
+                        <a href="/createAccount">OR, CREATE AN ACCOUNT.</a>
+                    </div>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
+        {{/unless}}
+        <!-- END MODAL -->
+        {{#if active}}
+            <div class="btn-indent form-center"><button type="button" name="button" class="add-btn"><a href="/logout">LOG OUT</a></button></div>
+        {{/if}}
     </section>
-    {{/unless}}
-    <!-- END MODAL -->
 
-    {{#if active}}
-    <button type="button" name="button" class="add-btn"><a href="/logout">LOG OUT</a></button>
-    {{/if}}
 
-  </section>
-      <h1 class="tagLine">GALVANIZE'S PREMIER PONG TRACKER</H1>
+
   <nav>
     <a href="/">HOME</a>
-    <a href="/about">ABOUT US</a>
+    <a href="/about">ABOUT  US</a>
     <a href="/rules"> RULES </a>
     {{#if active}}
     <a href="/profile"> PROFILE </a>
-    <a href="/account"> ACCOUNT SETTINGS</a>
+    <a href="/account"> ACCOUNT  SETTINGS</a>
     {{/if}}
+
   </nav>
 
 </header>

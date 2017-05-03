@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
-      <link type="text/css" rel="stylesheet" href="old.css">
+      <link type="text/css" rel="stylesheet" href="main.css">
       <title>The46Open</title>
   </head>
   <body>
@@ -11,12 +11,10 @@
    <main>
     <h1>Top Players</h1>
       {{#each data}}
-          <div class='fake'>
               <span class="first_name">{{this.first_name}} </span> &nbsp&nbsp
               <span class="first_name">{{this.last_name}} </span>&nbsp&nbsp
               <span class="first_name">{{this.cohort}} </span>&nbsp&nbsp
               <span class="first_name">{{this.rating}} </span>&nbsp&nbsp
-          </div>
       {{/each}}
     </main>
     <footer></footer>

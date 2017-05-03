@@ -21,6 +21,48 @@ html, body {
   color: black;
 }
 
+header {
+  h1 {
+    font-family: $font-header;
+    font-size:calc(12px + 4vw);
+    padding-left: 5vw;
+    padding-top: 5vh;
+    text-align: center;
+  }
+  nav {
+    width: 100vw;
+    min-height: 20px;
+    background-color: $light-blue;
+    text-align: right;
+    flex-wrap: wrap;
+    a {
+      font-size: 18px;
+      text-decoration: none;
+      padding-left: 1vw;
+      padding-right: 1vw;
+    &:hover {background-color: $primary-blue;}
+    }
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    .logoImg {
+      flex-direction: row;
+      width: 35%;
+      min-width: 300px;
+      height: 35%;
+      padding-top: 2vh;
+    }
+    // h1 {
+    .midNav {
+      flex-direction: row;
+    }
+  }
+}
+
+
+
+
 
 /*============================= MODAL*/
 .form-center {
@@ -73,6 +115,20 @@ html, body {
 .add-btn {
   margin-top: 9px;
   font-size: 25px;
+  padding: 15px;
   margin-bottom: 20px;
+  border-radius: 25px;
+  border: 1px solid $light-orange;
   background-color: white;
+  &:hover {
+    background:darken(white,8%);
+    transition: all 0.3s ease;
+    box-shadow: 5px 5px 2.5px $light-orange;
+  }
+  &:active {
+    background:darken(white,25%);
+  }
+  a {
+    text-decoration: none;
+  }
 }
