@@ -10,31 +10,26 @@
    {{> header}}
    <main class="push">
      <section class="flexy">
-
-    <section class="cont1">
-    <h1>Top Players</h1>
-      {{#each data}}
-        <div class="flexy">
-              <span class="passed_data">{{this.first_name}} </span> &nbsp&nbsp
-              <span class="passed_data">{{this.last_name}} </span>&nbsp&nbsp
-              <span class="passed_data">{{this.rating}} </span>&nbsp&nbsp
-            </div>
-      {{/each}}
-    </section>
-
-    <section class="cont1">
-    <h1>Recent Matches</h1>
-      {{#each data}}
-        <div class="flexy">
-              <span class="passed_data">{{this.first_name}} </span> &nbsp&nbsp
-              <span class="passed_data">{{this.last_name}} </span>&nbsp&nbsp
-              
-            </div>
-      {{/each}}
-    </section>
-
-
-    </section>
+      <section class="cont1">
+      <h1>Top Players</h1>
+        {{#each data}}
+          <div class="flexy">
+                <span class="passed_data">{{this.first_name}} </span> &nbsp&nbsp
+                <span class="passed_data">{{this.last_name}} </span>&nbsp&nbsp
+                <span class="passed_data">{{this.rating}} </span>&nbsp&nbsp
+              </div>
+        {{/each}}
+      </section>
+      <section class="cont1">
+      <h1>Recent Matches</h1>
+        {{#each data}}
+          <div class="flexy">
+                <span class="passed_data">{{this.first_name}} </span> &nbsp&nbsp
+                <span class="passed_data">{{this.last_name}} </span>&nbsp&nbsp
+              </div>
+        {{/each}}
+        </section>
+      </section>
     </main>
     <footer></footer>
     {{> modalscript}}

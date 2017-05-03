@@ -56,6 +56,8 @@ main {
     padding-bottom: 2vh;
     padding-top: 2vh;
     text-align: center; }
+  main p {
+    font-size: 16px; }
   main .flexy {
     display: flex;
     flex-direction: row;
@@ -70,6 +72,21 @@ main {
       text-align: center;
       padding-left: 4vw;
       padding-right: 4vw; }
+  main a {
+    font-size: 16px;
+    text-decoration: none; }
+    main a:hover {
+      color: #007ac1;
+      font-weight: bold; }
+  main h3, main h5 {
+    padding: 5px;
+    padding-top: 0; }
+  main li {
+    text-align: left;
+    font-size: 19px; }
+
+.left-align {
+  text-align: left; }
 
 footer {
   text-align: center;
