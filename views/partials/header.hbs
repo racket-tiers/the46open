@@ -1,17 +1,13 @@
 <header>
   <section class="flex-container">
     <img src="assets/46openlogo.png" alt="" class="logoImg">
-    <h1 class="tagLine">GALVANIZE'S PREMIER <br> PONG TRACKER</H1>
 
-    <!-- ADD THOUGHT MODAL MENU JS VERSION  -->
+    <!-- modal -->
     {{#unless active}}
     <section class ="midNav">
       <div class="btn-indent form-center">
-        <!-- Trigger/Open The Modal -->
         <button id="myBtn" class="add-btn">LOG IN NOW</button>
-        <!-- The Modal -->
         <div id="myModal" class="modal">
-        <!-- Modal content -->
           <div class="modal-content">
             <span class="close">&times;</span>
             <form action="/login" method="post">
@@ -32,13 +28,14 @@
       </div>
     </section>
     {{/unless}}
-    <!-- =====================END MODAL -->
+    <!-- END MODAL -->
 
     {{#if active}}
     <button type="button" name="button" class="add-btn"><a href="/logout">LOG OUT</a></button>
     {{/if}}
 
   </section>
+      <h1 class="tagLine">GALVANIZE'S PREMIER PONG TRACKER</H1>
   <nav>
     <a href="/">HOME</a>
     <a href="/about">ABOUT US</a>

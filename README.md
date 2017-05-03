@@ -1,6 +1,5 @@
 # the46open
 - See deployed site [here.](https://infinite-shelf-75058.herokuapp.com/)
-- Download & npm install for dependencies.
 - [Youtube walk through](https://youtu.be/Qq73UuLg8GU)
 
 ## CONTRIBUTORS
@@ -17,3 +16,7 @@
 ## TECHNOLOGIES
 
 JavaScript, HTML5, CSS3, Postgresql, Sketch, ExpressJS, Node.js
+
+## GETTING STARTED
+- Download & npm install for dependencies.
+- [gem install sass](http://sass-lang.com/install)

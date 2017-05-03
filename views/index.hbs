@@ -1,64 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="main.css">
-        <title>The46Open</title>
-    </head>
-    <body>
-
- {{> header}}
-
-<main>
-
-  <h1>Top Players</h1>
-
-    {{#each data}}
-        <div class='fake'>
-            <span class="first_name">{{this.first_name}} </span> &nbsp&nbsp
-            <span class="first_name">{{this.last_name}} </span>&nbsp&nbsp
-            <span class="first_name">{{this.cohort}} </span>&nbsp&nbsp
-            <span class="first_name">{{this.rating}} </span>&nbsp&nbsp
-        </div>
-    {{/each}}
-
-  </main>
-<footer>
-
-</footer>
-
-
-<!-- =======================MODAL SCRIPT -->
-<script type="text/javascript">
-    // Get the modal
-    var modal = document.getElementById('myModal');
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks on the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-// END MODAL HERE =============
-    </script>
+  <head>
+      <meta charset="utf-8">
+      <link href="https://fonts.googleapis.com/css?family=Iceland|Roboto:300" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="old.css">
+      <title>The46Open</title>
+  </head>
+  <body>
+   {{> header}}
+   <main>
+    <h1>Top Players</h1>
+      {{#each data}}
+          <div class='fake'>
+              <span class="first_name">{{this.first_name}} </span> &nbsp&nbsp
+              <span class="first_name">{{this.last_name}} </span>&nbsp&nbsp
+              <span class="first_name">{{this.cohort}} </span>&nbsp&nbsp
+              <span class="first_name">{{this.rating}} </span>&nbsp&nbsp
+          </div>
+      {{/each}}
+    </main>
+    <footer></footer>
+    {{> modalscript}}
     <script type="text/javascript" src="api.js"></script>
-
-
-</body>
-
-
-
-
+  </body>
 </html>

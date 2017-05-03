@@ -73,7 +73,8 @@ app.get('/profile', (req, res) => {
   linkQuery.seeIfUserExists().where({
     id: req.session.id
   }).first().then(function (data) {
-    res.render('profile', {data, active: isLoggedIn(req)})
+    console.log(data)
+    res.render('profile', {data: data, active: isLoggedIn(req)})
   })
 })
 
