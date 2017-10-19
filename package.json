@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/racket-tiers/the46open#readme",
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.1",
     "cookie-session": "^2.0.0-beta.1",
     "dotenv": "^4.0.0",
